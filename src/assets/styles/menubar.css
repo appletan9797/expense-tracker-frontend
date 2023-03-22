@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 5px;
+}
+
+ul{
+    padding :0;
+    margin:0;
+    list-style: none;
+    display: flex;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+}
+
+#icon-home{
+    margin-left: 15px;
+}
+
+#icon-plus{
+    margin-left: 11px;
+}
+
+#icon-chart{
+    margin-left: 14px;
+}
+
+#icon-settings{
+    margin-left: 20px;
+}
+
+#icon-signout{
+    margin-left: 20px;
+}
+
+span{
+    padding:0 0.5rem;
+    font-size: 13px;
+}
