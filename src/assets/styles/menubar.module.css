@@ -1,44 +1,36 @@
-* {
-    box-sizing: border-box;
-}
-
-body{
-    margin: 5px;
-}
-
-ul{
+.menu{
     padding :0;
     margin:0;
     list-style: none;
     display: flex;
 }
 
-li a {
+.menuItem{
     text-decoration: none;
     color: black;
 }
 
-#icon-home{
+.iconHome{
     margin-left: 15px;
 }
 
-#icon-plus{
+.iconPlus{
     margin-left: 11px;
 }
 
-#icon-chart{
+.iconChart{
     margin-left: 14px;
 }
 
-#icon-settings{
+.iconSettings{
     margin-left: 20px;
 }
 
-#icon-signout{
+.iconSignout{
     margin-left: 20px;
 }
 
-span{
+.menuText{
     padding:0 0.5rem;
     font-size: 13px;
 }
