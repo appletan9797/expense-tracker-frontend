@@ -13,6 +13,13 @@ import Button from '@mui/material/Button';
 import { MyAddExpenseFormProps } from '../../../types/ExpenseInterfaceType';
 
 export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseFormProps) =>{
+    const formatDate = (date:Date) =>{
+        const year = date.getFullYear()
+        const month = date.getMonth()+1
+        const day = date.getDate()
+        return year+"-"+month+"-"+day
+    }
+
     const [category, setCategory] = useState('0')
     const [details, setDetails] = useState('')
     const [amount, setAmount] = useState<number>(0)
@@ -24,6 +31,9 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
     })
     const [paymentMethod, setPaymentMethod] = useState('0')
     const [date, setDate] = useState(new Date())
+    const [dateToSubmit, setDateToSubmit] = useState(()=>{
+        return formatDate(new Date())
+    })
 
     const handleCategoryChange = (event:SelectChangeEvent) =>{
         setCategory(event.target.value)
@@ -42,11 +52,13 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
     }
     const handleDateChange = (date: Date) =>{
         setDate(date)
+        setDateToSubmit(formatDate(date))
     }
 
     return(
         <Box sx={{ width: '100%' }}>
-            <form>
+            <form method='post' action='http://localhost/api/add-expense?'>
+            
                 <Grid container rowSpacing={5} justifyContent="space-between">
                     {/* Category */}
                     <Grid item xs={12} md={6}>
@@ -54,6 +66,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Select
+                            name='category'
                             id="category-dropdown"
                             value={category}
                             onChange={handleCategoryChange}
@@ -78,6 +91,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                         <TextField
                             multiline
                             rows={3}
+                            name='details'
                             value={details}
                             onChange={handleDetailsChange}
                             sx={{ 
@@ -93,6 +107,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                     <Grid item xs={12} md={6}>
                         <TextField
                             type="number"
+                            name='amount'
                             value={amount}
                             onChange={handleAmountChange}
                             sx={{ 
@@ -108,6 +123,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                     <Grid item xs={12} md={6}>
                         <Select
                             id="currency-dropdown"
+                            name='currency'
                             value={currency}
                             onChange={handleCurrencyChange}
                             sx={{ 
@@ -130,6 +146,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                     <Grid item xs={12} md={6}>
                         <Select
                             id="paymentMethod-dropdown"
+                            name='paymentMethod'
                             value={paymentMethod}
                             onChange={handlePaymentMethodChange}
                             sx={{ 
@@ -151,6 +168,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                             <DatePicker value={date} onChange={handleDateChange} sx={{width: {xs:'100%', md:'60%'}}}/>
                         </LocalizationProvider>
                     </Grid>
+                    <input type='hidden' name='date' value={dateToSubmit} />
 
                     {/* Save button */}
                     <Grid item xs={12} md={12} sx={{ textAlign: 'center' }}>
