@@ -22,6 +22,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
         }
         return '0'
     })
+    const [paymentMethod, setPaymentMethod] = useState('0')
     const [date, setDate] = useState(new Date())
 
     const handleCategoryChange = (event:SelectChangeEvent) =>{
@@ -35,6 +36,9 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
     }
     const handleCurrencyChange = (event:SelectChangeEvent) =>{
         setCurrency(event.target.value)
+    }
+    const handlePaymentMethodChange = (event:SelectChangeEvent)=>{
+        setPaymentMethod(event.target.value)
     }
     const handleDateChange = (date: Date) =>{
         setDate(date)
@@ -116,6 +120,25 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
                                 return <MenuItem value={eachCurrency.currency_id}>{eachCurrency.currency_name} - {eachCurrency.currency_country_en}</MenuItem>
                             })
                         }
+                        </Select>
+                    </Grid>
+
+                    {/* Payment Method */}
+                    <Grid item xs={12} md={6}>
+                        <Typography align='center' marginTop={1.5} fontSize={13}><FormLabel>Payment Method</FormLabel></Typography>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Select
+                            id="paymentMethod-dropdown"
+                            value={paymentMethod}
+                            onChange={handlePaymentMethodChange}
+                            sx={{ 
+                                width: {xs:'100%', md:'60%'}
+                            }}
+                        >
+                        <MenuItem disabled={true} value={0} >Please select payment method</MenuItem>
+                        <MenuItem value='Cash'>Cash</MenuItem>
+                        <MenuItem value='Card'>Card</MenuItem>
                         </Select>
                     </Grid>
 
