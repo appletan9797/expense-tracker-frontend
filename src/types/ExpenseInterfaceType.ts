@@ -15,3 +15,12 @@ export type MyAddExpenseFormProps = {
     currencies : Currencies[],
     defaultCurrency : DefaultCurrency
 }
+
+export interface FormData {
+    "amount" : number,
+    "category" : number,
+    "currency" : number,
+    "date" : Date,
+    "details" : string | undefined,
+    "paymentMethod" : string | undefined
+}
