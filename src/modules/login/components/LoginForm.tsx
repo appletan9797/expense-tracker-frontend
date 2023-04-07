@@ -8,8 +8,10 @@ import FormLabel from '@mui/material/FormLabel';
 import { Controller, useForm } from 'react-hook-form';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
 import { loginApiService } from '../services/LoginApiService';
+import { getCurrencyApiService } from '../../currency/services/GetCurrencyApiService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { getDefaultCurrencyApiService } from '../../user/services/GetDefaultCurrencyApiService';
 
 export const LoginForm = () =>{
 
@@ -25,6 +27,10 @@ export const LoginForm = () =>{
         const { username, password } = data
         try{
             await loginApiService.login(username,password)
+            const currencies = await getCurrencyApiService.getAllCurrency()
+            const userDefaultCurrency = await getDefaultCurrencyApiService.getDefaultCurrency()
+            localStorage.setItem('currencies', JSON.stringify(currencies))
+            localStorage.setItem('userDefaultCurrency', JSON.stringify(userDefaultCurrency))
             router.push('../expenses')
         }
         catch(error:any){
