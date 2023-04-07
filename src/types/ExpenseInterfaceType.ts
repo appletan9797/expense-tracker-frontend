@@ -13,7 +13,7 @@ export interface DefaultCurrency{
 export type MyAddExpenseFormProps = {
     categories : Categories[],
     currencies : Currencies[],
-    defaultCurrency : DefaultCurrency
+    defaultCurrency : number
 }
 
 export interface FormData {

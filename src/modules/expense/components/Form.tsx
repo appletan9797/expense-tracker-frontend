@@ -19,7 +19,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
     const { handleSubmit, control, formState:{errors} } = useForm({
         defaultValues:{
             category:0,
-            currency:defaultCurrency ? defaultCurrency : 0,
+            currency:defaultCurrency,
             details:'',
             amount:0,
             paymentMethod:0,
