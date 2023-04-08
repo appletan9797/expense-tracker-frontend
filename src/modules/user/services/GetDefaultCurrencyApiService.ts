@@ -1,8 +1,7 @@
 import axios from "axios"
 
 class GetDefaultCurrencyApiService{
-    async getDefaultCurrency(){
-        const userId = 1
+    async getDefaultCurrency(userId:number){
         const url = 'http://localhost/api/users/default-currency/'+userId
         const defaultCurrency = await axios.get(url)
         return defaultCurrency.data

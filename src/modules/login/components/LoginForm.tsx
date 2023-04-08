@@ -26,9 +26,9 @@ export const LoginForm = () =>{
     const onFormSubmit = async (data) =>{
         const { username, password } = data
         try{
-            await loginApiService.login(username,password)
+            const user = await loginApiService.login(username,password)
             const currencies = await getCurrencyApiService.getAllCurrency()
-            const userDefaultCurrency = await getDefaultCurrencyApiService.getDefaultCurrency()
+            const userDefaultCurrency = await getDefaultCurrencyApiService.getDefaultCurrency(user.userid)
             localStorage.setItem('currencies', JSON.stringify(currencies))
             localStorage.setItem('userDefaultCurrency', JSON.stringify(userDefaultCurrency))
             router.push('../expenses')

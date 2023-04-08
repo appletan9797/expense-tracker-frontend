@@ -1,11 +1,14 @@
 import { getCategoryApiService } from "../../category/services/GetCategoryApiService";
-import { Categories, DefaultCurrency } from "../../../types/ExpenseInterfaceType";
+import { Categories } from "../../../types/ExpenseInterfaceType";
 import { Form as AddExpenseForm } from "../components/Form";
 import {OthersMenuBar as Menubar} from "../../../components/otherpage-menubar"
 import { useState, useEffect} from "react";
+import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiService";
 
-export const getServerSideProps = async() =>{
-    const categories = await getCategoryApiService.getAllCategory()
+    const token = context.req.cookies['expense_tracker_login']
+    const currentUserId = await getCurrentUserApiService.getCurrentUser(token)
+    const categories = await getCategoryApiService.getAllCategory(currentUserId)
+    
     return{
         props:{
             'categories' : categories.categories,
