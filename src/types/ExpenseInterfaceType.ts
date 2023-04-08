@@ -24,3 +24,8 @@ export interface FormData {
     "details" : string | undefined,
     "paymentMethod" : string | undefined
 }
+
+export interface LoginFormData {
+    "username": string,
+    "password":string
+}

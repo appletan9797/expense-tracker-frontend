@@ -12,6 +12,7 @@ import { getCurrencyApiService } from '../../currency/services/GetCurrencyApiSer
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getDefaultCurrencyApiService } from '../../user/services/GetDefaultCurrencyApiService';
+import { LoginFormData } from '../../../types/ExpenseInterfaceType';
 
 export const LoginForm = () =>{
 
@@ -23,7 +24,7 @@ export const LoginForm = () =>{
         password:{required:true}
     }
 
-    const onFormSubmit = async (data) =>{
+    const onFormSubmit = async (data:LoginFormData) =>{
         const { username, password } = data
         try{
             const user = await loginApiService.login(username,password)
