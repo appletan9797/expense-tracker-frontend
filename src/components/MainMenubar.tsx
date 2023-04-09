@@ -2,7 +2,7 @@ import {FaPlusCircle, FaChartPie ,FaSignOutAlt} from 'react-icons/fa';
 import {IoSettingsSharp} from 'react-icons/io5';
 import styles from '../assets/styles/menubar.module.css';
 
-function MainMenuBar(){
+export function MainMenuBar(){
     return(
         <nav>
             <ul className={styles.menu}>
@@ -34,5 +34,3 @@ function MainMenuBar(){
         </nav>
     )
 }
-
-export default MainMenuBar
