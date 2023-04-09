@@ -10,7 +10,7 @@ export interface DefaultCurrency{
     [key:string] : null | number
 }
 
-export type MyAddExpenseFormProps = {
+export type MyAddTransactionFormProps = {
     categories : Categories[],
     currencies : Currencies[],
     defaultCurrency : number
@@ -28,4 +28,17 @@ export interface FormData {
 export interface LoginFormData {
     "username": string,
     "password":string
+}
+
+export interface TransactionDetails {
+    [key:string] : number | string,
+}
+
+export interface Transactions {
+    [key:string] : TransactionDetails[]
+}
+
+export interface TransactionProps{
+    dailyExpenses:TransactionDetails[],
+    date: string
 }

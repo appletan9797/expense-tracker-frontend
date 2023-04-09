@@ -12,7 +12,7 @@ import { getCurrencyApiService } from '../../currency/services/GetCurrencyApiSer
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getDefaultCurrencyApiService } from '../../user/services/GetDefaultCurrencyApiService';
-import { LoginFormData } from '../../../types/ExpenseInterfaceType';
+import { LoginFormData } from '../../../types/TransactionInterfaceType';
 
 export const LoginForm = () =>{
 

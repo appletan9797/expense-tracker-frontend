@@ -1,7 +1,7 @@
 import { getCategoryApiService } from "../../category/services/GetCategoryApiService";
-import { Categories } from "../../../types/ExpenseInterfaceType";
-import { Form as AddExpenseForm } from "../components/Form";
-import {OthersMenuBar as Menubar} from "../../../components/otherpage-menubar"
+import { Categories } from "../../../types/TransactionInterfaceType";
+import { Form as AddTransactionForm } from "../components/Form";
+import { OthersMenuBar as Menubar } from "../../../components/OtherMenubar"
 import { useState, useEffect} from "react";
 import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiService";
 import { GetServerSidePropsContext } from "next";
@@ -18,7 +18,7 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     }
 }
 
-export const MyAddExpenseForm = ({ categories }: {categories :Categories[]}) =>{
+export const MyAddTransactionForm = ({ categories }: {categories :Categories[]}) =>{
     const [currencies, setCurrencies] = useState([])
     const [userDefaultCurrency, setUserDefaultCurrency] = useState(0)
 
@@ -37,8 +37,8 @@ export const MyAddExpenseForm = ({ categories }: {categories :Categories[]}) =>{
     return(
         <>
             <Menubar></Menubar>
-            <h1>Add Expense</h1>
-            <AddExpenseForm categories={categories} currencies={currencies} defaultCurrency={userDefaultCurrency} />
+            <h1>Add Transaction</h1>
+            <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={userDefaultCurrency} />
         </>
     )
 }

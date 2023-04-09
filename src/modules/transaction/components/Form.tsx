@@ -10,12 +10,13 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { MyAddExpenseFormProps, FormData } from '../../../types/ExpenseInterfaceType';
+import { MyAddTransactionFormProps, FormData } from '../../../types/TransactionInterfaceType';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
 import axios from 'axios';
 
-export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseFormProps) =>{
+export const Form = ({ categories, currencies, defaultCurrency } : MyAddTransactionFormProps) =>{
 
+    //TODO: default currency not working
     const { handleSubmit, control, formState:{errors} } = useForm({
         defaultValues:{
             category:0,
@@ -36,6 +37,7 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddExpenseF
             const day = date.getDate()
             formattedDate = year+"-"+month+"-"+day
         }
+        //TODO: move this to service
         try{
             const response = await axios.post('http://localhost/api/add-expense?', {
                 details: details,
