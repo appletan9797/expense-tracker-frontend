@@ -39,6 +39,6 @@ export interface Transactions {
 }
 
 export interface TransactionProps{
-    dailyExpenses:TransactionDetails[],
+    dailyTransactions:TransactionDetails[],
     date: string
 }
