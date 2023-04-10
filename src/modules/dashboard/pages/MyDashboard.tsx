@@ -22,7 +22,7 @@ export const MyDashboard = ({transactions} : Transactions) =>{
     return (
         <>
             <MainMenuBar />
-            <TransactionSummary />
+            <TransactionSummary monthlyTransactions={transactions}/>
             <Grid container>
                 {
                     Object.keys(transactions).map((dailyTransactions)=>
