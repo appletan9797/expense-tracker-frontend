@@ -42,3 +42,8 @@ export interface TransactionProps{
     dailyTransactions:TransactionDetails[],
     date: string
 }
+
+export interface TransactionFilterProps{
+    currencies: Currencies[],
+    userDefaultCurrency: number
+}

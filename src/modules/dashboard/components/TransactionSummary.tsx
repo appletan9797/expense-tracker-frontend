@@ -1,8 +1,7 @@
 import { TransactionDetails, Transactions } from "../../../types/TransactionInterfaceType"
 import { Grid, Table, TableBody, TableRow,TableCell, TableContainer, TableHead} from "@mui/material"
-import { FaFilter } from "react-icons/fa"
+import { TransactionFilter } from "./TransactionFilter"
 import _ from "lodash"
-import styles from "../../../assets/styles/transactionSummary.module.css"
 
 export const TransactionSummary = ({monthlyTransactions} : Transactions) =>{
 
@@ -49,8 +48,8 @@ export const TransactionSummary = ({monthlyTransactions} : Transactions) =>{
                     </Table>
                 </TableContainer>
             </Grid>
-            <Grid item xs={2} md={3} >
-                <FaFilter size={23} className={styles.iconFilter}></FaFilter>
+            <Grid item xs={2} md={3}>
+                <TransactionFilter currencies={currencies} userDefaultCurrency={userDefaultCurrency} />
             </Grid>
         </Grid>
     )
