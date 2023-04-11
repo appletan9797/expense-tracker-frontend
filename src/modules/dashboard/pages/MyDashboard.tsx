@@ -6,6 +6,7 @@ import { getAllExpenseApiService } from "../services/GetAllTransactionApiService
 import { Transactions } from "../../../types/TransactionInterfaceType"
 import { GetServerSidePropsContext } from "next"
 import { Grid } from "@mui/material"
+import { useEffect, useState } from "react"
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     const token = context.req.cookies['expense_tracker_login']
@@ -19,17 +20,38 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
 }
 
 export const MyDashboard = ({transactions} : Transactions) =>{
+    const [currencies, setCurrencies] = useState([])
+    const [userDefaultCurrency, setUserDefaultCurrency] = useState(1)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const storedCurrencies = localStorage.getItem('currencies')
+        const storedUserDefaultCurrency = localStorage.getItem('userDefaultCurrency')
+        if(storedCurrencies){
+            setCurrencies(JSON.parse(storedCurrencies))
+        }
+        if(storedUserDefaultCurrency){
+            setUserDefaultCurrency(Number(storedUserDefaultCurrency))
+        }
+        setLoading(false)
+    },[])
+    
     return (
         <>
             <MainMenuBar />
-            <TransactionSummary monthlyTransactions={transactions}/>
-            <Grid container>
-                {
-                    Object.keys(transactions).map((dailyTransactions)=>
-                        <TransactionRecord dailyTransactions={transactions[dailyTransactions]} date={dailyTransactions}/>
-                    )
-                }
-            </Grid>
+            {
+                loading ? <div>Loading...</div> :
+                <>
+                    <TransactionSummary monthlyTransactions={transactions} currencies={currencies} userDefaultCurrency={userDefaultCurrency}/>
+                    <Grid container>
+                        {
+                            Object.keys(transactions).map((dailyTransactions)=>{
+                                return <TransactionRecord dailyTransactions={transactions[dailyTransactions]} date={dailyTransactions}/>
+                            })
+                        }
+                    </Grid>
+                </>
+            }
         </>
       )
 }

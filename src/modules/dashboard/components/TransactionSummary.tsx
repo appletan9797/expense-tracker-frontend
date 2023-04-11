@@ -1,9 +1,9 @@
-import { TransactionDetails, Transactions } from "../../../types/TransactionInterfaceType"
-import { Grid, Table, TableBody, TableRow,TableCell, TableContainer, TableHead} from "@mui/material"
+import { TransactionDetails, TransactionSummaryProps } from "../../../types/TransactionInterfaceType"
+import { Grid, Table, TableBody, TableRow,TableCell, TableContainer, TableHead } from "@mui/material"
 import { TransactionFilter } from "./TransactionFilter"
 import _ from "lodash"
 
-export const TransactionSummary = ({monthlyTransactions} : Transactions) =>{
+export const TransactionSummary = ({monthlyTransactions, currencies, userDefaultCurrency} : TransactionSummaryProps) =>{
 
     const transactionsValue = _.map(monthlyTransactions, eachTransaction => eachTransaction)
     const groupedData = _.groupBy(_.flatten(transactionsValue),"transaction_type")

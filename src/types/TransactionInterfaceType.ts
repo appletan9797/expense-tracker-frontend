@@ -43,6 +43,12 @@ export interface TransactionProps{
     date: string
 }
 
+export interface TransactionSummaryProps{
+    monthlyTransactions : TransactionDetails[],
+    currencies:Currencies[],
+    userDefaultCurrency: number
+}
+
 export interface TransactionFilterProps{
     currencies: Currencies[],
     userDefaultCurrency: number
