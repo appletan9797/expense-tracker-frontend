@@ -10,10 +10,11 @@ export interface DefaultCurrency{
     [key:string] : null | number
 }
 
-export type MyAddTransactionFormProps = {
+export interface TransactionFormProps{
     categories : Categories[],
     currencies : Currencies[],
-    defaultCurrency : number
+    defaultCurrency : number,
+    existingTransaction? : TransactionDetails[]
 }
 
 export interface EditTransactionFormProps{

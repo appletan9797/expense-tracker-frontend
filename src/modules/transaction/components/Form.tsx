@@ -10,21 +10,20 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { MyAddTransactionFormProps, FormData } from '../../../types/TransactionInterfaceType';
+import { TransactionFormProps, FormData } from '../../../types/TransactionInterfaceType';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
 import axios from 'axios';
 
-export const Form = ({ categories, currencies, defaultCurrency } : MyAddTransactionFormProps) =>{
+export const Form = ({ categories, currencies, defaultCurrency, existingTransaction } : TransactionFormProps) =>{
 
-    //TODO: default currency not working
     const { handleSubmit, control, formState:{errors} } = useForm({
         defaultValues:{
-            category:0,
-            currency:defaultCurrency,
-            details:'',
-            amount:0,
-            paymentMethod:0,
-            date: new Date()
+            category: existingTransaction? existingTransaction["category_id" as keyof typeof existingTransaction] : 0,
+            currency: defaultCurrency,
+            details: existingTransaction? existingTransaction["transaction_details" as keyof typeof existingTransaction] : '',
+            amount: existingTransaction? existingTransaction["transaction_amount" as keyof typeof existingTransaction] : 0,
+            paymentMethod: existingTransaction? existingTransaction["payment_method" as keyof typeof existingTransaction] : 0,
+            date: existingTransaction? new Date(existingTransaction["transaction_date"] as string) : new Date()
         }
     })
 
@@ -37,20 +36,30 @@ export const Form = ({ categories, currencies, defaultCurrency } : MyAddTransact
             const day = date.getDate()
             formattedDate = year+"-"+month+"-"+day
         }
-        //TODO: move this to service
-        try{
-            const response = await axios.post('http://localhost/api/add-expense?', {
+
+        const url = existingTransaction ? 
+                    'transactions/'+ existingTransaction["transaction_id" as keyof typeof existingTransaction]
+                    : 'transactions'
+        const method = existingTransaction ? 'patch' : 'post'
+        const dataToSubmit= {
+                transactionType : 'Expense',
                 details: details,
                 category: category,
                 currency: currency,
                 amount: amount,
                 paymentMethod: paymentMethod,
                 date: formattedDate
+        }
+
+        try{
+            const response = await axios({
+                method:method,
+                url:'http://localhost/api/'+url,
+                data: dataToSubmit
             })
 
             if (response.data.success){
                 //if success redirect to main page
-                
             }
         }
         catch(error){
