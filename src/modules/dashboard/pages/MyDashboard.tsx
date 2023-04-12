@@ -1,11 +1,9 @@
 import { MainMenuBar } from "../../../components/MainMenubar"
-import { TransactionSummary } from "../components/TransactionSummary"
-import { TransactionRecord } from "../components/TransactionRecord"
+import { Transactions } from "../components/Transactions"
 import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiService"
 import { getAllExpenseApiService } from "../services/GetAllTransactionApiService"
 import { TransactionsDashboardProps } from "../../../types/TransactionInterfaceType"
 import { GetServerSidePropsContext } from "next"
-import { Grid } from "@mui/material"
 import { useEffect, useState } from "react"
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
@@ -39,19 +37,12 @@ export const MyDashboard = ({transactions} : TransactionsDashboardProps) =>{
     return (
         <>
             <MainMenuBar />
-            {
-                loading ? <div>Loading...</div> :
-                <>
-                    <TransactionSummary monthlyTransactions={transactions} currencies={currencies} userDefaultCurrency={userDefaultCurrency}/>
-                    <Grid container>
-                        {
-                            Object.keys(transactions).map((dailyTransactions)=>{
-                                return <TransactionRecord dailyTransactions={transactions[dailyTransactions]} date={dailyTransactions}/>
-                            })
-                        }
-                    </Grid>
-                </>
-            }
+            <Transactions 
+                loading={loading} 
+                transactions={transactions} 
+                currencies={currencies} 
+                userDefaultCurrency={userDefaultCurrency}
+            />
         </>
       )
 }

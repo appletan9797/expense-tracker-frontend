@@ -53,3 +53,10 @@ export interface TransactionFilterProps{
     currencies: Currencies[],
     userDefaultCurrency: number
 }
+
+export interface TransactionComponentProps{
+    loading: boolean,
+    transactions:TransactionDetails[],
+    currencies: Currencies[],
+    userDefaultCurrency: number
+}
