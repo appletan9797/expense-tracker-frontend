@@ -24,12 +24,12 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
 
     useEffect(()=>{
         const storedCurrencies = localStorage.getItem('currencies')
-        const userDefaultCurrency = localStorage.getItem('userDefaultCurrency')
+        const storedUserDefaultCurrency = localStorage.getItem('userDefaultCurrency')
         if(storedCurrencies){
             setCurrencies(JSON.parse(storedCurrencies))
         }
-        if(userDefaultCurrency){
-            const defaultCurrency = JSON.parse(userDefaultCurrency)
+        if(storedUserDefaultCurrency){
+            const defaultCurrency = JSON.parse(storedUserDefaultCurrency)
             setUserDefaultCurrency(defaultCurrency.default_currency_id)
         }
       },[])
