@@ -7,25 +7,25 @@ export function OthersMenuBar(){
         <nav>
             <ul className={styles.menu}>
                 <li>
-                    <a href='#' className={styles.menuItem}>
+                    <a href={'/transactions'} className={styles.menuItem}>
                         <FaHome size={18} className={styles.iconHome}/> <br />
                         <span className={styles.menuText}>Home</span> 
                     </a>
                 </li>
                 <li>
-                    <a href='#' className={styles.menuItem}>
+                    <a href={'/chart'} className={styles.menuItem}>
                         <FaChartPie size={18} className={styles.iconChart}/> <br />
                         <span className={styles.menuText}>Chart</span> 
                     </a>
                 </li>
                 <li>
-                    <a href='#' className={styles.menuItem}>
+                    <a href={'/settings'} className={styles.menuItem}>
                         <IoSettingsSharp size={19} className={styles.iconSettings}/> <br />
                         <span className={styles.menuText}>Settings</span> 
                     </a>
                 </li>
                 <li>
-                    <a href='#' className={styles.menuItem}>
+                    <a href={'/logout'} className={styles.menuItem}>
                         <FaSignOutAlt size={18} className={styles.iconSignout}/> <br />
                         <span className={styles.menuText}>Logout</span> 
                     </a>

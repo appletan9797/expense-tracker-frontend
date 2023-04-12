@@ -32,7 +32,7 @@ export const LoginForm = () =>{
             const userDefaultCurrency = await getDefaultCurrencyApiService.getDefaultCurrency(user.userid)
             localStorage.setItem('currencies', JSON.stringify(currencies))
             localStorage.setItem('userDefaultCurrency', userDefaultCurrency)
-            router.push('../expenses')
+            router.push('../transactions')
         }
         catch(error:any){
             if(error.response && error.response.status === 401){
