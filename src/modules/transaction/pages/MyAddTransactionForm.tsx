@@ -21,6 +21,7 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
 export const MyAddTransactionForm = ({ categories }: {categories :Categories[]}) =>{
     const [currencies, setCurrencies] = useState([])
     const [userDefaultCurrency, setUserDefaultCurrency] = useState(0)
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
         const storedCurrencies = localStorage.getItem('currencies')
@@ -32,13 +33,18 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
             const defaultCurrency = JSON.parse(storedUserDefaultCurrency)
             setUserDefaultCurrency(defaultCurrency.default_currency_id)
         }
+        setLoading(false)
       },[])
 
     return(
         <>
             <Menubar></Menubar>
             <h1>Add Transaction</h1>
+            { 
+                loading ? 
+                <div>Loading...</div> : 
             <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={userDefaultCurrency} />
+            }
         </>
     )
 }
