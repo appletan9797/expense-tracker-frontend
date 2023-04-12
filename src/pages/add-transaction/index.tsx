@@ -1,4 +1,4 @@
-import { MyAddTransactionForm } from "../../modules/expense/pages/MyAddTransactionForm";
-export { getServerSideProps } from "../../modules/expense/pages/MyAddTransactionForm";
+import { MyAddTransactionForm } from "../../modules/transaction/pages/MyAddTransactionForm";
+export { getServerSideProps } from "../../modules/transaction/pages/MyAddTransactionForm";
 
 export default MyAddTransactionForm;
