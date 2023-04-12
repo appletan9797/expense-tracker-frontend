@@ -1,7 +1,10 @@
 import { TransactionRecordProps, TransactionDetails} from "../../../types/TransactionInterfaceType"
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material"
+import { useRouter } from 'next/router';
 
 export const TransactionRecord = ({dailyTransactions, date, userDefaultCurrency} : TransactionRecordProps) =>{
+
+  const router = useRouter()
 
   const getTotal = () =>{
     const expenseTransaction = dailyTransactions.filter((expense) => 
@@ -27,6 +30,11 @@ export const TransactionRecord = ({dailyTransactions, date, userDefaultCurrency}
     return totalTransaction
   }
   
+  const redirectToEdit = (event:React.MouseEvent) =>{
+    const transactionId = event.currentTarget.getAttribute('data-id')
+    router.push('../transactions/edit/'+transactionId)
+  }
+
   return (
     <>
       <Grid item xs={12} md={2}/>
@@ -47,7 +55,13 @@ export const TransactionRecord = ({dailyTransactions, date, userDefaultCurrency}
                 dailyTransactions.filter((transaction) => transaction.currency_id === userDefaultCurrency)
                 .map((eachTransaction) =>(
                   <TableRow key={eachTransaction.transaction_id}>
-                    <TableCell sx={{ borderBottom: "none" }}>{eachTransaction.transaction_details}</TableCell>
+                    <TableCell 
+                      data-id={eachTransaction.transaction_id} 
+                      onClick={redirectToEdit} 
+                      sx={{ borderBottom: "none", cursor:"pointer" }}
+                    >
+                      {eachTransaction.transaction_details}
+                    </TableCell>
                     <TableCell sx={{ borderBottom: "none" }} align="right">
                         {eachTransaction.transaction_type === "Expense" ? '-' : '+'} 
                         {eachTransaction.transaction_amount}
