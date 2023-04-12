@@ -34,11 +34,32 @@ export interface TransactionDetails {
     [key:string] : number | string,
 }
 
-export interface Transactions {
+export interface TransactionsDashboardProps {
     [key:string] : TransactionDetails[]
 }
 
-export interface TransactionProps{
-    dailyExpenses:TransactionDetails[],
+export interface TransactionRecordProps{
+    dailyTransactions:TransactionDetails[],
     date: string
+    userDefaultCurrency: number
+}
+
+export interface TransactionSummaryProps{
+    monthlyTransactions : TransactionDetails[],
+    currencies:Currencies[],
+    userDefaultCurrency: number
+    updateTransactionComponent: Function
+}
+
+export interface TransactionFilterProps{
+    currencies: Currencies[],
+    userDefaultCurrency: number
+    updateTransactionSummaryComponent: Function
+}
+
+export interface TransactionComponentProps{
+    loading: boolean,
+    transactions:TransactionDetails[],
+    currencies: Currencies[],
+    userDefaultCurrency: number
 }
