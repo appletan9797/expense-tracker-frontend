@@ -41,17 +41,20 @@ export interface TransactionsDashboardProps {
 export interface TransactionRecordProps{
     dailyTransactions:TransactionDetails[],
     date: string
+    userDefaultCurrency: number
 }
 
 export interface TransactionSummaryProps{
     monthlyTransactions : TransactionDetails[],
     currencies:Currencies[],
     userDefaultCurrency: number
+    updateTransactionComponent: Function
 }
 
 export interface TransactionFilterProps{
     currencies: Currencies[],
     userDefaultCurrency: number
+    updateTransactionSummaryComponent: Function
 }
 
 export interface TransactionComponentProps{

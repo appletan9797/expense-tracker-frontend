@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TransactionFilterProps } from "../../../types/TransactionInterfaceType"
 import styles from "../../../assets/styles/transactionSummary.module.css"
 
-export const TransactionFilter = ({currencies, userDefaultCurrency} : TransactionFilterProps) =>{
+export const TransactionFilter = ({currencies, userDefaultCurrency, updateTransactionSummaryComponent} : TransactionFilterProps) =>{
     const [menuVisibility, setMenuVisibility] = useState(null)
     const isMenuOpen = Boolean(menuVisibility);
     const handleClick = (event : React.MouseEvent) => {
@@ -18,6 +18,7 @@ export const TransactionFilter = ({currencies, userDefaultCurrency} : Transactio
     const [selectedCurrency, setSelectedCurrency] = useState(userDefaultCurrency)
     const handleCurrencyFilter = (currencyId : number) => {
         setSelectedCurrency(currencyId)
+        updateTransactionSummaryComponent(currencyId)
         handleClose()
     }
 

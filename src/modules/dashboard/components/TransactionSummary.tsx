@@ -1,13 +1,14 @@
 import { TransactionDetails, TransactionSummaryProps } from "../../../types/TransactionInterfaceType"
 import { Grid, Table, TableBody, TableRow,TableCell, TableContainer, TableHead } from "@mui/material"
 import { TransactionFilter } from "./TransactionFilter"
+import { useState } from "react"
 import _ from "lodash"
 
-export const TransactionSummary = ({monthlyTransactions, currencies, userDefaultCurrency} : TransactionSummaryProps) =>{
+export const TransactionSummary = ({monthlyTransactions, currencies, userDefaultCurrency, updateTransactionComponent} : TransactionSummaryProps) =>{
 
-    const transactionsValue = _.map(monthlyTransactions, eachTransaction => eachTransaction)
-    const groupedData = _.groupBy(_.flatten(transactionsValue),"transaction_type")
-
+    const [defaultCurrency, setDefaultCurrency] = useState(userDefaultCurrency)
+    const transactionsValue :any  = _.map(monthlyTransactions, eachTransaction => eachTransaction)
+    const groupedData: any = _.groupBy(_.flatten(transactionsValue),"transaction_type")
     const getIncome = () => {
         const income = getTotal(groupedData["Income"])
         return income
@@ -19,10 +20,15 @@ export const TransactionSummary = ({monthlyTransactions, currencies, userDefault
     }
 
     const getTotal = (transactions : TransactionDetails[]) =>{
-        const totalTransaction = _.sumBy(transactions, (transaction) => {
-            return parseFloat(transaction.transaction_amount.toString())
-        })
+        const totalTransaction = _.sumBy(_.filter(transactions, (transaction) => transaction.currency_id === defaultCurrency),(eachTransaction) =>{
+                                            return parseFloat(eachTransaction.transaction_amount.toString())
+                                        })
         return totalTransaction
+    }
+
+    const updateCurrency = (currencyId : number) =>{
+        setDefaultCurrency(currencyId)
+        updateTransactionComponent(currencyId)
     }
 
     return(
@@ -49,7 +55,11 @@ export const TransactionSummary = ({monthlyTransactions, currencies, userDefault
                 </TableContainer>
             </Grid>
             <Grid item xs={2} md={3}>
-                <TransactionFilter currencies={currencies} userDefaultCurrency={userDefaultCurrency} />
+                <TransactionFilter 
+                    currencies={currencies} 
+                    userDefaultCurrency={userDefaultCurrency} 
+                    updateTransactionSummaryComponent={updateCurrency}
+                />
             </Grid>
         </Grid>
     )

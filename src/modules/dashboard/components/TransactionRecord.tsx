@@ -1,12 +1,17 @@
 import { TransactionRecordProps, TransactionDetails} from "../../../types/TransactionInterfaceType"
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material"
 
-export const TransactionRecord = ({dailyTransactions, date} : TransactionRecordProps) =>{
+export const TransactionRecord = ({dailyTransactions, date, userDefaultCurrency} : TransactionRecordProps) =>{
+
   const getTotal = () =>{
-    const expenseTransaction = dailyTransactions.filter((expense) => expense.transaction_type === "Expense")
+    const expenseTransaction = dailyTransactions.filter((expense) => 
+                                                          expense.transaction_type === "Expense" &&
+                                                          expense.currency_id === userDefaultCurrency)
     const expense = calculateTotal(expenseTransaction)
 
-    const incomeTransaction = dailyTransactions.filter((income) => income.transaction_type === "Income")
+    const incomeTransaction = dailyTransactions.filter((income) => 
+                                                          income.transaction_type === "Income" &&
+                                                          income.currency_id === userDefaultCurrency)
     const income = calculateTotal(incomeTransaction)
 
     return {expense, income}
@@ -39,7 +44,8 @@ export const TransactionRecord = ({dailyTransactions, date} : TransactionRecordP
             </TableHead>
             <TableBody>
               {
-                dailyTransactions.map((eachTransaction) =>(
+                dailyTransactions.filter((transaction) => transaction.currency_id === userDefaultCurrency)
+                .map((eachTransaction) =>(
                   <TableRow key={eachTransaction.transaction_id}>
                     <TableCell sx={{ borderBottom: "none" }}>{eachTransaction.transaction_details}</TableCell>
                     <TableCell sx={{ borderBottom: "none" }} align="right">
