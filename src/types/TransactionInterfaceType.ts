@@ -16,6 +16,11 @@ export type MyAddTransactionFormProps = {
     defaultCurrency : number
 }
 
+export interface EditTransactionFormProps{
+    transaction: TransactionDetails[],
+    categories: Categories[]
+}
+
 export interface FormData {
     "amount" : number,
     "category" : number,
