@@ -30,8 +30,7 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
             setCurrencies(JSON.parse(storedCurrencies))
         }
         if(storedUserDefaultCurrency){
-            const defaultCurrency = JSON.parse(storedUserDefaultCurrency)
-            setUserDefaultCurrency(defaultCurrency.default_currency_id)
+            setUserDefaultCurrency(Number(storedUserDefaultCurrency))
         }
         setLoading(false)
       },[])
@@ -43,7 +42,7 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
             { 
                 loading ? 
                 <div>Loading...</div> : 
-            <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={userDefaultCurrency} />
+                <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={userDefaultCurrency} />
             }
         </>
     )

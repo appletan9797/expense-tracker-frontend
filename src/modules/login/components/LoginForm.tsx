@@ -31,7 +31,7 @@ export const LoginForm = () =>{
             const currencies = await getCurrencyApiService.getAllCurrency()
             const userDefaultCurrency = await getDefaultCurrencyApiService.getDefaultCurrency(user.userid)
             localStorage.setItem('currencies', JSON.stringify(currencies))
-            localStorage.setItem('userDefaultCurrency', JSON.stringify(userDefaultCurrency))
+            localStorage.setItem('userDefaultCurrency', userDefaultCurrency)
             router.push('../expenses')
         }
         catch(error:any){
