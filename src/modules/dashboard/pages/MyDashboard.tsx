@@ -3,7 +3,7 @@ import { TransactionSummary } from "../components/TransactionSummary"
 import { TransactionRecord } from "../components/TransactionRecord"
 import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiService"
 import { getAllExpenseApiService } from "../services/GetAllTransactionApiService"
-import { Transactions } from "../../../types/TransactionInterfaceType"
+import { TransactionsDashboardProps } from "../../../types/TransactionInterfaceType"
 import { GetServerSidePropsContext } from "next"
 import { Grid } from "@mui/material"
 import { useEffect, useState } from "react"
@@ -19,7 +19,7 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     }
 }
 
-export const MyDashboard = ({transactions} : Transactions) =>{
+export const MyDashboard = ({transactions} : TransactionsDashboardProps) =>{
     const [currencies, setCurrencies] = useState([])
     const [userDefaultCurrency, setUserDefaultCurrency] = useState(1)
     const [loading, setLoading] = useState(true)

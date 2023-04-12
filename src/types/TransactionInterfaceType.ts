@@ -34,11 +34,11 @@ export interface TransactionDetails {
     [key:string] : number | string,
 }
 
-export interface Transactions {
+export interface TransactionsDashboardProps {
     [key:string] : TransactionDetails[]
 }
 
-export interface TransactionProps{
+export interface TransactionRecordProps{
     dailyTransactions:TransactionDetails[],
     date: string
 }

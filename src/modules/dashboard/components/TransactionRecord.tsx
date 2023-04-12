@@ -1,7 +1,7 @@
-import { TransactionProps, TransactionDetails} from "../../../types/TransactionInterfaceType"
+import { TransactionRecordProps, TransactionDetails} from "../../../types/TransactionInterfaceType"
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material"
 
-export const TransactionRecord = ({dailyTransactions, date} : TransactionProps) =>{
+export const TransactionRecord = ({dailyTransactions, date} : TransactionRecordProps) =>{
   const getTotal = () =>{
     const expenseTransaction = dailyTransactions.filter((expense) => expense.transaction_type === "Expense")
     const expense = calculateTotal(expenseTransaction)
