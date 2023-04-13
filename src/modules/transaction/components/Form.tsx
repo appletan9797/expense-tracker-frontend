@@ -11,10 +11,18 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { TransactionFormProps, FormData } from '../../../types/TransactionInterfaceType';
+import { deleteTransactionApiService } from '../services/DeleteTransactionApiService';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
 import axios from 'axios';
 
 export const Form = ({ categories, currencies, defaultCurrency, existingTransaction } : TransactionFormProps) =>{
+
+    const router = useRouter()
+    const [errorMsg, setErrorMsg] = useState("")
+    const transactionId = existingTransaction ? 
+                            Number(existingTransaction["transaction_id" as keyof typeof existingTransaction]) : 0
 
     const { handleSubmit, control, formState:{errors} } = useForm({
         defaultValues:{
@@ -72,6 +80,45 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
         currency:{validate: (value:number) => value !== 0},
         amount:{min : 0.01},
         paymentMethod:{validate: (value:number) => value !== 0}
+    }
+
+    const size = existingTransaction ? 6 : 12
+    const width = existingTransaction ? '40%' : '20%'
+    const appendSaveButton = () =>{
+        return(
+            <Grid item xs={12} md={size} sx={{ textAlign: 'center' }}>
+                <Button type='submit' variant='outlined' 
+                    sx={{ width: width, backgroundColor:'gray', color:'white', borderRadius:'40px', height:'50px'}}>
+                        Save
+                </Button>
+            </Grid>
+        )
+    }
+
+    const appendSaveAndDeleteButton = () =>{
+        return(
+            <>
+                {appendSaveButton()}
+                <Grid item xs={12} md={size} sx={{ textAlign: 'center' }}>
+                    <Button onClick={onDelete} variant='outlined' 
+                        sx={{ width: width, backgroundColor:'gray', color:'white', borderRadius:'40px', height:'50px'}}>
+                            Delete
+                    </Button>
+                </Grid>
+            </>
+            
+        )
+    }
+
+    const onDelete = async() =>{
+        try{
+            await deleteTransactionApiService.deleteTransaction(transactionId)
+            router.push('/transactions')
+        }
+        catch(error: any){
+            setErrorMsg("There is an issue deleting the transaction. Please try again.")
+        }
+        
     }
 
     return(
@@ -227,13 +274,17 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
                         </LocalizationProvider>
                     </Grid>
 
-                    {/* Save button */}
-                    <Grid item xs={12} md={12} sx={{ textAlign: 'center' }}>
-                        <Button type='submit' variant='outlined' 
-                            sx={{ width: '20%', backgroundColor:'gray', color:'white', borderRadius:'40px', height:'50px'}}>
-                                Save
-                        </Button>
-                    </Grid>
+                    {/* Buttons */}
+                    {existingTransaction ? appendSaveAndDeleteButton() : appendSaveButton()}
+                    
+                    {/* Error message (if there are issue in deleting record)  */}
+                    { errorMsg ? 
+                        <Grid item xs={12} md={12} textAlign="center">
+                            <span className={styles.errorMsg}>*{errorMsg}</span>
+                        </Grid> 
+                        : ''
+                    }
+                    
                 </Grid>
             </form>    
         </Box>   
