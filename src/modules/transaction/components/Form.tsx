@@ -62,7 +62,7 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
         try{
             const response = await axios({
                 method:method,
-                url:'http://localhost/api/'+url,
+                url:process.env.NEXT_PUBLIC_DOMAIN+url,
                 data: dataToSubmit
             })
 
