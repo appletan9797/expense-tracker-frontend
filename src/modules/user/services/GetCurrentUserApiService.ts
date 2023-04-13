@@ -3,7 +3,7 @@ import axios from "axios"
 class GetCurrentUserApiService{
     async getCurrentUser(token : any){
         try{
-            const url = 'http://localhost/api/user'
+            const url = process.env.NEXT_PUBLIC_DOMAIN+'user'
             const response = await axios.get(url,{
                 headers:{
                     Authorization:`Bearer ${token}`
