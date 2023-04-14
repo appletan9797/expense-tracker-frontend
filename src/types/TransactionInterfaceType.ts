@@ -36,6 +36,12 @@ export interface LoginFormData {
     "password":string
 }
 
+export interface RegisterFormData {
+    "username": string,
+    "email" : string,
+    "password":string
+}
+
 export interface TransactionDetails {
     [key:string] : number | string,
 }
