@@ -5,6 +5,8 @@ import { getAllExpenseApiService } from "../services/GetAllTransactionApiService
 import { TransactionsDashboardProps } from "../../../types/TransactionInterfaceType"
 import { GetServerSidePropsContext } from "next"
 import { useEffect, useState } from "react"
+import { useCurrencyList } from "../../currency/hooks/useCurrencyList"
+import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency"
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     const token = context.req.cookies['expense_tracker_login']
@@ -18,31 +20,26 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
 }
 
 export const MyDashboard = ({transactions} : TransactionsDashboardProps) =>{
-    const [currencies, setCurrencies] = useState([])
-    const [userDefaultCurrency, setUserDefaultCurrency] = useState(1)
+    
     const [loading, setLoading] = useState(true)
+    const currencies = useCurrencyList()
+    const userDefaultCurrency = useDefaultCurrency()
 
-    useEffect(() => {
-        const storedCurrencies = localStorage.getItem('currencies')
-        const storedUserDefaultCurrency = localStorage.getItem('userDefaultCurrency')
-        if(storedCurrencies){
-            setCurrencies(JSON.parse(storedCurrencies))
+    useEffect(() =>{
+        if((currencies.length > 0)){
+            setLoading(false)
         }
-        if(storedUserDefaultCurrency){
-            setUserDefaultCurrency(Number(storedUserDefaultCurrency))
-        }
-        setLoading(false)
-    },[])
+    },[currencies])
     
     return (
         <>
-            <MainMenuBar />
-            <Transactions 
-                loading={loading} 
-                transactions={transactions} 
-                currencies={currencies} 
-                userDefaultCurrency={userDefaultCurrency}
-            />
+                <MainMenuBar />
+                <Transactions 
+                    loading={loading} 
+                    transactions={transactions} 
+                    currencies={currencies} 
+                    userDefaultCurrency={userDefaultCurrency}
+                />
         </>
       )
 }

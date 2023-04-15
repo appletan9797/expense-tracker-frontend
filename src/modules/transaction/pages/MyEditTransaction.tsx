@@ -5,6 +5,7 @@ import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiS
 import { getTransactionByIdApiService } from "../services/GetTransactionByIdApiService";
 import { EditTransactionFormProps } from "../../../types/TransactionInterfaceType";
 import { useState, useEffect} from "react";
+import { useCurrencyList } from "../../currency/hooks/useCurrencyList";
 import { GetServerSidePropsContext } from "next";
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
@@ -24,22 +25,14 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
 }
 
 export const MyEditTransaction = ({ transaction, categories} : EditTransactionFormProps) =>{
-    const [currencies, setCurrencies] = useState([])
-    const [userDefaultCurrency, setUserDefaultCurrency] = useState(0)
     const [loading, setLoading] = useState(true)
+    const currencies = useCurrencyList()
 
-    useEffect(()=>{
-        const storedCurrencies = localStorage.getItem('currencies')
-        const storedUserDefaultCurrency = localStorage.getItem('userDefaultCurrency')
-        if(storedCurrencies){
-            setCurrencies(JSON.parse(storedCurrencies))
+    useEffect(() =>{
+        if((currencies.length > 0)){
+            setLoading(false)
         }
-        if(storedUserDefaultCurrency){
-            setUserDefaultCurrency(Number(storedUserDefaultCurrency))
-        }
-        setLoading(false)
-      },[])
-
+    },[currencies])
 
     return(
         <>
@@ -51,7 +44,6 @@ export const MyEditTransaction = ({ transaction, categories} : EditTransactionFo
                 <EditTransactionForm 
                     categories={categories} 
                     currencies={currencies} 
-                    defaultCurrency={userDefaultCurrency} 
                     existingTransaction={transaction}
                 />  
             }

@@ -5,6 +5,8 @@ import { OthersMenuBar as Menubar } from "../../../components/OtherMenubar"
 import { useState, useEffect} from "react";
 import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiService";
 import { GetServerSidePropsContext } from "next";
+import { useCurrencyList } from "../../currency/hooks/useCurrencyList";
+import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency";
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     const token = context.req.cookies['expense_tracker_login']
@@ -19,21 +21,15 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
 }
 
 export const MyAddTransactionForm = ({ categories }: {categories :Categories[]}) =>{
-    const [currencies, setCurrencies] = useState([])
-    const [userDefaultCurrency, setUserDefaultCurrency] = useState(0)
     const [loading, setLoading] = useState(true)
+    const currencies = useCurrencyList()
+    const userDefaultCurrency = useDefaultCurrency()
 
-    useEffect(()=>{
-        const storedCurrencies = localStorage.getItem('currencies')
-        const storedUserDefaultCurrency = localStorage.getItem('userDefaultCurrency')
-        if(storedCurrencies){
-            setCurrencies(JSON.parse(storedCurrencies))
+    useEffect(() =>{
+        if((currencies.length > 0)){
+            setLoading(false)
         }
-        if(storedUserDefaultCurrency){
-            setUserDefaultCurrency(Number(storedUserDefaultCurrency))
-        }
-        setLoading(false)
-      },[])
+    },[currencies])
 
     return(
         <>
