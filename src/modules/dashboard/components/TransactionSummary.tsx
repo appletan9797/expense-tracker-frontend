@@ -17,6 +17,10 @@ export const TransactionSummary = ({dateTransactionsMap, currencies, userDefault
         const expense = getTotal(groupedData["Expense"])
         return expense
     }
+    
+    const getBalance = () =>{
+        return (getIncome() - getExpense()).toFixed(2)
+    }
 
     const getTotal = (transactions : TransactionDetails[]) =>{
         const totalTransaction = _.sumBy(_.filter(transactions, (transaction) => transaction.currency_id === defaultCurrency),(eachTransaction) =>{
@@ -47,7 +51,7 @@ export const TransactionSummary = ({dateTransactionsMap, currencies, userDefault
                             <TableRow>
                                 <TableCell sx={{ textAlign:"center" }}>{getIncome()}</TableCell>
                                 <TableCell sx={{ textAlign:"center" }}>{getExpense()}</TableCell>
-                                <TableCell sx={{ textAlign:"center" }}>{getIncome() - getExpense()}</TableCell>
+                                <TableCell sx={{ textAlign:"center" }}>{getBalance()}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
