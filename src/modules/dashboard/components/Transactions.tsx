@@ -26,7 +26,7 @@ export const Transactions = ({ loading, transactions, currencies, userDefaultCur
             isLoading ? <div>Loading...</div> :
                 <>
                 <TransactionSummary 
-                    monthlyTransactions={transactions} 
+                    dateTransactionsMap={transactions} 
                     currencies={currencies}
                     userDefaultCurrency={userDefaultCurrency} 
                     updateTransactionComponent={updateCurrency}

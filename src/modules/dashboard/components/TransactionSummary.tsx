@@ -4,10 +4,9 @@ import { TransactionFilter } from "./TransactionFilter"
 import { useState } from "react"
 import _ from "lodash"
 
-export const TransactionSummary = ({monthlyTransactions, currencies, userDefaultCurrency, updateTransactionComponent} : TransactionSummaryProps) =>{
-
+export const TransactionSummary = ({dateTransactionsMap, currencies, userDefaultCurrency, updateTransactionComponent} : TransactionSummaryProps) =>{
     const [defaultCurrency, setDefaultCurrency] = useState(userDefaultCurrency)
-    const transactionsValue :any  = _.map(monthlyTransactions, eachTransaction => eachTransaction)
+    const transactionsValue :any  = _.map(dateTransactionsMap, eachTransaction => eachTransaction)
     const groupedData: any = _.groupBy(_.flatten(transactionsValue),"transaction_type")
     const getIncome = () => {
         const income = getTotal(groupedData["Income"])
