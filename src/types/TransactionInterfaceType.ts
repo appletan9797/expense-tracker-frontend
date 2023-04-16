@@ -79,3 +79,7 @@ export interface TransactionComponentProps{
     currencies: Currencies[],
     userDefaultCurrency: number
 }
+
+export interface GroupedTransactions{
+    [key: string]: TransactionDetails[]
+}
