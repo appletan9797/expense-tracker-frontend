@@ -13,7 +13,7 @@ export interface DefaultCurrency{
 export interface TransactionFormProps{
     categories : Categories[],
     currencies : Currencies[],
-    defaultCurrency : number,
+    defaultCurrency? : number,
     existingTransaction? : TransactionDetails[]
 }
 

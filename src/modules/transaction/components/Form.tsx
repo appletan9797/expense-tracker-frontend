@@ -27,7 +27,7 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
     const { handleSubmit, control, formState:{errors} } = useForm({
         defaultValues:{
             category: existingTransaction? existingTransaction["category_id" as keyof typeof existingTransaction] : 0,
-            currency: defaultCurrency,
+            currency: existingTransaction? existingTransaction["currency_id" as keyof typeof existingTransaction] : defaultCurrency,
             details: existingTransaction? existingTransaction["transaction_details" as keyof typeof existingTransaction] : '',
             amount: existingTransaction? existingTransaction["transaction_amount" as keyof typeof existingTransaction] : 0,
             paymentMethod: existingTransaction? existingTransaction["payment_method" as keyof typeof existingTransaction] : 0,
