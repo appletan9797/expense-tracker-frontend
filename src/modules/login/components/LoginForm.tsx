@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getDefaultCurrencyApiService } from '../../user/services/GetDefaultCurrencyApiService';
 import { LoginFormData } from '../../../types/TransactionInterfaceType';
+import Cookies from 'universal-cookie'
 
 export const LoginForm = () =>{
 
@@ -28,6 +29,8 @@ export const LoginForm = () =>{
         const { username, password } = data
         try{
             const user = await loginApiService.login(username,password)
+            const cookies = new Cookies()
+            cookies.set('expense_tracker_login', user.token, { path: '/', maxAge:2147483647 })
             const currencies = await getCurrencyApiService.getAllCurrency()
             const userDefaultCurrency = await getDefaultCurrencyApiService.getDefaultCurrency(user.userid)
             localStorage.setItem('currencies', JSON.stringify(currencies))
