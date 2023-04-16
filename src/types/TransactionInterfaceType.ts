@@ -46,8 +46,12 @@ export interface TransactionDetails {
     [key:string] : number | string,
 }
 
-export interface TransactionsDashboardProps {
+export interface DateTransactionsMap {
     [key:string] : TransactionDetails[]
+}
+
+export interface TransactionsDashboardProps{
+    transactions:DateTransactionsMap
 }
 
 export interface TransactionRecordProps{
@@ -57,7 +61,7 @@ export interface TransactionRecordProps{
 }
 
 export interface TransactionSummaryProps{
-    monthlyTransactions : TransactionDetails[],
+    dateTransactionsMap : DateTransactionsMap,
     currencies:Currencies[],
     userDefaultCurrency: number
     updateTransactionComponent: Function
@@ -71,7 +75,7 @@ export interface TransactionFilterProps{
 
 export interface TransactionComponentProps{
     loading: boolean,
-    transactions:TransactionDetails[],
+    transactions:DateTransactionsMap,
     currencies: Currencies[],
     userDefaultCurrency: number
 }
