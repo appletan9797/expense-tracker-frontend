@@ -42,6 +42,9 @@ export interface RegisterFormData {
     "password":string
 }
 
+export interface ForgotPasswordFormData {
+    "email" : string
+}
 export interface TransactionDetails {
     [key:string] : number | string,
 }
