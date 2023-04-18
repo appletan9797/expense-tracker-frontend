@@ -22,6 +22,10 @@ export interface EditTransactionFormProps{
     categories: Categories[]
 }
 
+export interface ResetPasswordFormProps{
+    token : string
+}
+
 export interface FormData {
     "amount" : number,
     "category" : number,
@@ -44,6 +48,10 @@ export interface RegisterFormData {
 
 export interface ForgotPasswordFormData {
     "email" : string
+}
+
+export interface ResetPasswordFormData{
+    "password" : string
 }
 export interface TransactionDetails {
     [key:string] : number | string,
