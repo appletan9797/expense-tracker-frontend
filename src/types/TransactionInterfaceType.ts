@@ -26,6 +26,13 @@ export interface ResetPasswordFormProps{
     token : string
 }
 
+export interface ChartData{
+    [key:string]:string | number
+}
+export interface ChartProps{
+    [key:string]: ChartData[]
+}
+
 export interface FormData {
     "amount" : number,
     "category" : number,
