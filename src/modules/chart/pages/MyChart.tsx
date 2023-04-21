@@ -1,5 +1,4 @@
 import { Chart } from "../components/Chart"
-import { ChartDetails } from "../components/ChartDetails"
 import { ChartProps } from "../../../types/TransactionInterfaceType"
 import { getChartDataApiService } from "../services/GetChartDataApiService"
 import { OthersMenuBar } from "../../../components/OtherMenubar"
@@ -8,17 +7,18 @@ export const getServerSideProps = async () =>{
     const response = await getChartDataApiService.getChartData()
     return{
         props:{
-            chartData : response.chart_data,
+            incomeChartData : response.income_chart_data,
+            expenseChartData : response.expense_chart_data,
             detailsData : response.details_data
         }
     }
 }
 
-export const MyChart = ({ chartData, detailsData } : ChartProps) =>{
+export const MyChart = ({ incomeChartData, expenseChartData, detailsData } : ChartProps) =>{
     return(
         <>
             <OthersMenuBar />
-            <Chart chartData={chartData} detailsData={detailsData}/>
+            <Chart expenseChartData={expenseChartData} incomeChartData={incomeChartData} detailsData={detailsData}/>
         </>
     )
 }

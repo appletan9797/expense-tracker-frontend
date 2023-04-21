@@ -101,3 +101,7 @@ export interface TransactionComponentProps{
 export interface GroupedTransactions{
     [key: string]: TransactionDetails[]
 }
+
+export interface ChartFilterProps{
+    updateChartComponent : Function
+}
