@@ -26,6 +26,13 @@ export interface ResetPasswordFormProps{
     token : string
 }
 
+export interface ChartData{
+    [key:string]:string | number
+}
+export interface ChartProps{
+    [key:string]: ChartData[]
+}
+
 export interface FormData {
     "amount" : number,
     "category" : number,
@@ -93,4 +100,8 @@ export interface TransactionComponentProps{
 
 export interface GroupedTransactions{
     [key: string]: TransactionDetails[]
+}
+
+export interface ChartFilterProps{
+    updateChartComponent : Function
 }
