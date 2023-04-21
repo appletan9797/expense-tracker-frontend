@@ -18,8 +18,7 @@ export const MyChart = ({ chartData, detailsData } : ChartProps) =>{
     return(
         <>
             <OthersMenuBar />
-            <Chart chartData={chartData} />
-            <ChartDetails detailsData={detailsData} chartData={chartData}/>
+            <Chart chartData={chartData} detailsData={detailsData}/>
         </>
     )
 }
