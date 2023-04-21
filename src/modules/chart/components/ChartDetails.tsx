@@ -1,8 +1,8 @@
-import { ChartProps } from "../../../types/TransactionInterfaceType"
+import { ChartDetailsProps } from "../../../types/TransactionInterfaceType"
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material"
 import _ from "lodash"
 
-export const ChartDetails = ({ detailsData, chartData }: ChartProps) =>{
+export const ChartDetails = ({ detailsData, chartData }: ChartDetailsProps) =>{
 
     const returnTableBody = () =>{
         return(

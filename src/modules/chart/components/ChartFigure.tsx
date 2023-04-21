@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { AgChartsReact } from 'ag-charts-react';
 import { AgChartOptions } from 'ag-charts-community';
-import { ChartData, ChartProps } from '../../../types/TransactionInterfaceType';
+import { ChartData, ChartFigureProps } from '../../../types/TransactionInterfaceType';
 
-export const ChartFigure = ({chartData} : ChartProps) =>{
+export const ChartFigure = ({chartData} : ChartFigureProps) =>{
     const [loading, setLoading] = useState(true)
     const [option, setOption] = useState<AgChartOptions>({})
 

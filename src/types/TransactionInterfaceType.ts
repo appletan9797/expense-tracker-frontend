@@ -29,8 +29,19 @@ export interface ResetPasswordFormProps{
 export interface ChartData{
     [key:string]:string | number
 }
+
 export interface ChartProps{
     [key:string]: ChartData[]
+}
+export interface ChartFigureProps{
+    chartData: ChartData[],
+    currencyId : number
+}
+
+export interface ChartDetailsProps{
+    detailsData: ChartData[],
+    chartData: ChartData[],
+    currencyId : number
 }
 
 export interface FormData {
