@@ -24,12 +24,14 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
     const [loading, setLoading] = useState(true)
     const currencies = useCurrencyList()
     const userDefaultCurrency = useDefaultCurrency()
+    const [defaultCurrency, setDefaultCurrency] = useState(userDefaultCurrency)
 
     useEffect(() =>{
         if((currencies.length > 0)){
+            userDefaultCurrency !== 0 ? setDefaultCurrency(userDefaultCurrency) : setDefaultCurrency(1)
             setLoading(false)
         }
-    },[currencies])
+    },[currencies,userDefaultCurrency,defaultCurrency])
 
     return(
         <>
@@ -38,7 +40,7 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
             { 
                 loading ? 
                 <div>Loading...</div> : 
-                <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={userDefaultCurrency} />
+                <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={defaultCurrency} />
             }
         </>
     )

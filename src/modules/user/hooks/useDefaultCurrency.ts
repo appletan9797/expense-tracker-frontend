@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export const useDefaultCurrency = () =>{
-    const [userDefaultCurrency, setUserDefaultCurrency] = useState(1)
+    const [userDefaultCurrency, setUserDefaultCurrency] = useState(0)
 
     useEffect(() => {
         const storedUserDefaultCurrency = localStorage.getItem('userDefaultCurrency')

@@ -1,14 +1,16 @@
-import { ChartProps } from "../../../types/TransactionInterfaceType"
+import { ChartDetailsProps } from "../../../types/TransactionInterfaceType"
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material"
 import _ from "lodash"
 
-export const ChartDetails = ({ detailsData, chartData }: ChartProps) =>{
+export const ChartDetails = ({ detailsData, chartData, currencyId }: ChartDetailsProps) =>{
 
     const returnTableBody = () =>{
         return(
             chartData.map((eachCategory) =>{
                 const filteredTransaction = detailsData.filter((eachTransaction) => 
-                                                eachTransaction.category_id === eachCategory.category_id)
+                                                eachTransaction.category_id === eachCategory.category_id &&
+                                                eachTransaction.currency_id === currencyId
+                                            )
                 return(
                     <>
                         <TableRow>
