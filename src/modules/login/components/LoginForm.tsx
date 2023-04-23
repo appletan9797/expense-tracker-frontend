@@ -107,10 +107,10 @@ export const LoginForm = () =>{
 
                     {/* Forgot password and Sign up */}
                     <Grid item md={6} textAlign="right">
-                        <Link href='#'>Forgot password?</Link>
+                        <Link href='./forgot-password'>Forgot password?</Link>
                     </Grid>
                     <Grid item md={6} textAlign="center">
-                        <Link href='#'>Don't have an account? Sign up</Link>
+                        <Link href='./register'>Don't have an account? Sign up</Link>
                     </Grid>
 
                     {/* Save button */}
