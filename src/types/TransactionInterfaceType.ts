@@ -35,12 +35,11 @@ export interface ChartProps{
 }
 export interface ChartFigureProps{
     chartData: ChartData[],
-    currencyId : number
 }
 
 export interface ChartDetailsProps{
     detailsData: ChartData[],
-    chartData: ChartData[],
+    transactionType: string,
     currencyId : number
 }
 
