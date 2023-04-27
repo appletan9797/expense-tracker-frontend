@@ -115,3 +115,7 @@ export interface GroupedTransactions{
 export interface ChartFilterProps{
     updateChartComponent : Function
 }
+
+export interface SettingsProps{
+    [key:string] : Function
+}
