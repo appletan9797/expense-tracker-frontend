@@ -70,6 +70,11 @@ export interface ForgotPasswordFormData {
 export interface ResetPasswordFormData{
     "password" : string
 }
+
+export interface UpdatePasswordFormData{
+    "password" : string
+    "confirmPassword" : string
+}
 export interface TransactionDetails {
     [key:string] : number | string,
 }

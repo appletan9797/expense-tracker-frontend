@@ -9,6 +9,15 @@ class SaveSettingsApiService{
 
         return response.data
     }
+
+    async updatePassword(password: string, userId:number){
+        const url= process.env.NEXT_PUBLIC_DOMAIN+"users/"+userId+"/password"
+        const response = await axios.patch(url,{
+            "newPassword" : password
+        })
+
+        return response.data
+    }
 }
 
 export const saveSettingsApiService = new SaveSettingsApiService()
