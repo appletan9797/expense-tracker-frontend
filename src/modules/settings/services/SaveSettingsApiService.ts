@@ -18,6 +18,28 @@ class SaveSettingsApiService{
 
         return response.data
     }
+
+    async saveCategory(categoryNameEn:string, categoryNameCn:string, userId:number){
+        const url= process.env.NEXT_PUBLIC_DOMAIN+"categories"
+        const response = await axios.post(url,{
+            "categoryNameEn" : categoryNameEn,
+            "categoryNameCn" : categoryNameCn,
+            "userId" : userId
+        })
+        
+        return response.data
+    }
+
+    async updateCategory(categoryId:number, categoryNameEn:string, categoryNameCn:string, userId:number){
+        const url = process.env.NEXT_PUBLIC_DOMAIN+"categories/"+categoryId
+        const response = await axios.patch(url,{
+            "categoryNameEn" : categoryNameEn,
+            "categoryNameCn" : categoryNameCn,
+            "userId" : userId
+        })
+
+        return response.data
+    }
 }
 
 export const saveSettingsApiService = new SaveSettingsApiService()

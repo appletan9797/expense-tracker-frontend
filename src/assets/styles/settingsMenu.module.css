@@ -11,3 +11,12 @@
     margin-top: 10px;
     padding: 5px;
 }
+
+.plusIcon{
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.plusIconGrid{
+    margin-top: 10px;
+}
