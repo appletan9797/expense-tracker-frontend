@@ -1,9 +1,9 @@
 import { Box, List, ListItemButton } from "@mui/material"
 import { useState } from "react"
 import style from "../../../assets/styles/settingsMenu.module.css"
-import { SettingsProps } from "../../../types/TransactionInterfaceType";
+import { SettingsMenuProps } from "../../../types/TransactionInterfaceType";
 
-export const SettingsMenu = ({updateSettings} : SettingsProps) =>{
+export const SettingsMenu = ({updateSettings} : SettingsMenuProps) =>{
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const handleListItemClick = (menuNumber: number) => {

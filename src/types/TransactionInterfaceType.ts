@@ -121,7 +121,7 @@ export interface ChartFilterProps{
     updateChartComponent : Function
 }
 
-export interface SettingsProps{
+export interface SettingsMenuProps{
     [key:string] : Function
 }
 
