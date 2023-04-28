@@ -1,4 +1,6 @@
 export interface Categories{
+    category_name_en : string,
+    category_name_cn : string,
     [key:string] : number | string
 }
 
@@ -70,6 +72,15 @@ export interface ForgotPasswordFormData {
 export interface ResetPasswordFormData{
     "password" : string
 }
+
+export interface UpdatePasswordFormData{
+    "password" : string
+    "confirmPassword" : string
+}
+
+export interface SaveCategoryFormData{
+    [key:string] : string
+}
 export interface TransactionDetails {
     [key:string] : number | string,
 }
@@ -114,4 +125,22 @@ export interface GroupedTransactions{
 
 export interface ChartFilterProps{
     updateChartComponent : Function
+}
+
+export interface SettingsMenuProps{
+    [key:string] : Function
+}
+
+export interface SettingsProps{
+    currentUser: User
+    categories: Categories[]
+}
+
+export interface User{
+    user_id : number,
+    [key:string] : string | number
+}
+
+export interface UserProps{
+    [key:string] : User
 }

@@ -1,0 +1,22 @@
+.menuText{
+    margin-bottom: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.errorMsg{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:red;
+    border:1px solid #EA8E8E;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.plusIcon{
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.plusIconGrid{
+    margin-top: 10px;
+}

@@ -10,7 +10,7 @@ class GetCurrentUserApiService{
                 }
             })
 
-            return response.data.user_id
+            return response.data
         }
         catch(error){
             console.log(error)
