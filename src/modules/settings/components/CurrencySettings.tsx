@@ -2,11 +2,11 @@ import { Box, Grid, Select, Alert, MenuItem,Typography, FormLabel, Button, Selec
 import { useCurrencyList } from "../../currency/hooks/useCurrencyList"
 import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency"
 import { FormEvent, useEffect, useState } from "react"
-import { UserId } from "../../../types/TransactionInterfaceType"
+import { UserProps } from "../../../types/TransactionInterfaceType"
 import { saveSettingsApiService } from "../services/SaveSettingsApiService"
 import styles from "../../../assets/styles/settingsMenu.module.css";
 
-export const CurrencySettings = ({currentUserId} : UserId) =>{
+export const CurrencySettings = ({currentUser} : UserProps) =>{
     const currencies = useCurrencyList()
     const userDefaultCurrency = useDefaultCurrency()
     const [defaultCurrency, setDefaultCurrency] = useState("")
@@ -16,7 +16,7 @@ export const CurrencySettings = ({currentUserId} : UserId) =>{
     const onFormSubmit = async(event: FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
         try{
-            const response = await saveSettingsApiService.saveCurrency(Number(defaultCurrency), currentUserId)
+            const response = await saveSettingsApiService.saveCurrency(Number(defaultCurrency), currentUser.user_id)
             if(response.success){
                 setMessage("Default currency updated")
             }

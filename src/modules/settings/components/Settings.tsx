@@ -4,9 +4,9 @@ import { CurrencySettings } from "./CurrencySettings"
 import { ProfileSettings } from "./ProfileSettings"
 import { Grid } from "@mui/material"
 import { useState } from "react"
-import { UserId } from "../../../types/TransactionInterfaceType"
+import { UserProps } from "../../../types/TransactionInterfaceType"
 
-export const Settings = ({currentUserId} : UserId) =>{
+export const Settings = ({currentUser} : UserProps) =>{
     const [menu, SetMenu] = useState(0)
 
     const updateMenuContent = (menuNumber:number) =>{
@@ -19,9 +19,9 @@ export const Settings = ({currentUserId} : UserId) =>{
                 <SettingsMenu updateSettings={updateMenuContent}/>
             </Grid>
             <Grid item xs={12} md={8}>
-                {menu === 0 && <CategoriesSettings currentUserId={currentUserId}/>}
-                {menu === 1 && <CurrencySettings currentUserId={currentUserId}/>}
-                {menu === 2 && <ProfileSettings currentUserId={currentUserId}/>}
+                {menu === 0 && <CategoriesSettings currentUser={currentUser}/>}
+                {menu === 1 && <CurrencySettings currentUser={currentUser}/>}
+                {menu === 2 && <ProfileSettings currentUser={currentUser}/>}
             </Grid>
         </Grid>
         
