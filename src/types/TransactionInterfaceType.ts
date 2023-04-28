@@ -119,3 +119,7 @@ export interface ChartFilterProps{
 export interface SettingsProps{
     [key:string] : Function
 }
+
+export interface UserId{
+    [key:string] : number
+}
