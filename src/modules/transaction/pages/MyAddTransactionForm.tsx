@@ -10,8 +10,8 @@ import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency";
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     const token = context.req.cookies['expense_tracker_login']
-    const currentUserId = await getCurrentUserApiService.getCurrentUser(token)
-    const categories = await getCategoryApiService.getAllCategory(currentUserId)
+    const currentUser = await getCurrentUserApiService.getCurrentUser(token)
+    const categories = await getCategoryApiService.getAllCategory(currentUser.user_id)
     
     return{
         props:{

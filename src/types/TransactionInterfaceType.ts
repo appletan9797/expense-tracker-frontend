@@ -120,6 +120,11 @@ export interface SettingsProps{
     [key:string] : Function
 }
 
-export interface UserId{
-    [key:string] : number
+export interface User{
+    user_id : number,
+    [key:string] : string | number
+}
+
+export interface UserProps{
+    [key:string] : User
 }
