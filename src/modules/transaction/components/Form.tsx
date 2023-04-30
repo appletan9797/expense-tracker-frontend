@@ -64,13 +64,7 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
         }
 
         try{
-            const response = await axios({
-                method:method,
-                url:process.env.NEXT_PUBLIC_DOMAIN+url,
-                data: dataToSubmit
-            })
-
-            if (response.data.success){
+            const response = await handleTransactionApiService.addOrEditTransaction(method,url,dataToSubmit)
                 //if success redirect to main page
             }
         }
