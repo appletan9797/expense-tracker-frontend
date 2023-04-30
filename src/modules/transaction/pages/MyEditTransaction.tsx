@@ -2,7 +2,7 @@ import { OthersMenuBar as Menubar } from "../../../components/OtherMenubar"
 import { Form as EditTransactionForm } from "../components/Form";
 import { getCategoryApiService } from "../../category/services/GetCategoryApiService";
 import { getCurrentUserApiService } from "../../user/services/GetCurrentUserApiService";
-import { getTransactionByIdApiService } from "../services/GetTransactionByIdApiService";
+import { handleTransactionApiService } from "../services/HandleTransactionApiService";
 import { EditTransactionFormProps } from "../../../types/TransactionInterfaceType";
 import { useState, useEffect} from "react";
 import { useCurrencyList } from "../../currency/hooks/useCurrencyList";
@@ -14,7 +14,7 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     const categories = await getCategoryApiService.getAllCategory(currentUser.user_id)
 
     const {transactionId} = context.query
-    const transaction = await getTransactionByIdApiService.getTransactionById(Number(transactionId))
+    const transaction = await handleTransactionApiService.getTransactionById(Number(transactionId))
     
     return{
         props:{

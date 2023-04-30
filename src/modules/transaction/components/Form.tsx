@@ -11,7 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { TransactionFormProps, FormData } from '../../../types/TransactionInterfaceType';
-import { deleteTransactionApiService } from '../services/DeleteTransactionApiService';
+import { handleTransactionApiService } from '../services/HandleTransactionApiService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
@@ -112,7 +112,7 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
 
     const onDelete = async() =>{
         try{
-            await deleteTransactionApiService.deleteTransaction(transactionId)
+            await handleTransactionApiService.deleteTransaction(transactionId)
             router.push('/transactions')
         }
         catch(error: any){
