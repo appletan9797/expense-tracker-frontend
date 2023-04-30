@@ -10,16 +10,16 @@ export const TransactionSummary = ({dateTransactionsMap, currencies, userDefault
 
     const getIncome = () => {
         const income = getTotal(groupedData["Income"])
-        return income
+        return income.toFixed(2)
     }
 
     const getExpense = () => {
         const expense = getTotal(groupedData["Expense"])
-        return expense
+        return expense.toFixed(2)
     }
     
     const getBalance = () =>{
-        return (getIncome() - getExpense()).toFixed(2)
+        return (parseFloat(getIncome()) - parseFloat(getExpense())).toFixed(2)
     }
 
     const getTotal = (transactions : TransactionDetails[]) =>{
