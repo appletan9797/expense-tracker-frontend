@@ -15,7 +15,6 @@ import { handleTransactionApiService } from '../services/HandleTransactionApiSer
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
-import axios from 'axios';
 
 export const Form = ({ categories, currencies, defaultCurrency, existingTransaction, userId } : TransactionFormProps) =>{
 
@@ -65,11 +64,14 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
 
         try{
             const response = await handleTransactionApiService.addOrEditTransaction(method,url,dataToSubmit)
-                //if success redirect to main page
+            if (response.success){
+                router.push('/transactions')
             }
         }
         catch(error){
-            //if error show the page saying there is issue when adding expense
+            existingTransaction ? 
+            setErrorMsg("There is an issue editing the transaction. Please try again.") :
+            setErrorMsg("There is an issue adding the transaction. Please try again.")
         }
     }
 
