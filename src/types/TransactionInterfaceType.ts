@@ -17,7 +17,7 @@ export interface TransactionFormProps{
     currencies : DataObject[],
     defaultCurrency? : number,
     existingTransaction? : TransactionDetails[],
-    userId : number
+    userId? : number
 }
 
 export interface AddTransactionFormProps{
@@ -28,6 +28,11 @@ export interface AddTransactionFormProps{
 export interface EditTransactionFormProps{
     transaction: TransactionDetails[],
     categories: Categories[]
+}
+
+export interface TransactionDataToSubmit{
+    [key:string]: string | number | undefined
+    userId? : number
 }
 
 export interface ResetPasswordFormProps{

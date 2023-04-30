@@ -10,7 +10,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { TransactionFormProps, FormData } from '../../../types/TransactionInterfaceType';
+import { TransactionFormProps, FormData, TransactionDataToSubmit } from '../../../types/TransactionInterfaceType';
 import { handleTransactionApiService } from '../services/HandleTransactionApiService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -49,7 +49,7 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
                     'transactions/'+ existingTransaction["transaction_id" as keyof typeof existingTransaction]
                     : 'transactions'
         const method = existingTransaction ? 'patch' : 'post'
-        const dataToSubmit= {
+        const dataToSubmit : TransactionDataToSubmit = {
                 transactionType : 'Expense',
                 details: details,
                 category: category,
@@ -57,6 +57,10 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
                 amount: amount,
                 paymentMethod: paymentMethod,
                 date: formattedDate
+        }
+
+        if(userId){
+            dataToSubmit.userId = userId
         }
 
         try{
