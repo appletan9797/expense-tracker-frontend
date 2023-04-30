@@ -10,6 +10,8 @@ import { registerApiService } from '../services/RegisterApiService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RegisterFormData } from '../../../types/TransactionInterfaceType';
+import { saveDataUponLogin } from '../../../utils/saveDataUponLogin';
+import { loginApiService } from '../../login/services/LoginApiService';
 
 export const RegistrationForm = () =>{
 
@@ -39,6 +41,9 @@ export const RegistrationForm = () =>{
         const { username, email, password } = data
         try{
             await registerApiService.register(username,email,password)
+            const user = await loginApiService.login(username, password)
+            saveDataUponLogin.setLoginCookies(user)
+            saveDataUponLogin.setLocalStorage(user)
             router.push('../transactions')
         }
         catch(error:any){
