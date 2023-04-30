@@ -60,7 +60,7 @@ export const TransactionRecord = ({dailyTransactions, date, userDefaultCurrency}
                       onClick={redirectToEdit} 
                       sx={{ borderBottom: "none", cursor:"pointer" }}
                     >
-                      {eachTransaction.transaction_details}
+                      {eachTransaction.transaction_details ? eachTransaction.transaction_details : eachTransaction.category_name_en}
                     </TableCell>
                     <TableCell sx={{ borderBottom: "none" }} align="right">
                         {eachTransaction.transaction_type === "Expense" ? '-' : '+'} 

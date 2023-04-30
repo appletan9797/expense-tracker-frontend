@@ -31,7 +31,7 @@ export const ChartDetails = ({ detailsData, transactionType, currencyId }: Chart
                                 return(
                                     <TableRow>
                                         <TableCell>
-                                            {eachCatTransaction.transaction_details}
+                                            {eachCatTransaction.transaction_details ? eachCatTransaction.transaction_details : eachCatTransaction.category_name_en}
                                         </TableCell>
                                         <TableCell align="right">
                                             {eachCatTransaction.transaction_amount}
