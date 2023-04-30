@@ -38,6 +38,10 @@ export interface ChartData{
     [key:string]:string | number
 }
 
+export interface GroupedChartData{
+    [key:string]: ChartData[]
+}
+
 export interface ChartProps{
     transactionsDetails: ChartData[],
     userId:number

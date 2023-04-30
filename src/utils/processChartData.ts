@@ -1,4 +1,4 @@
-import { ChartProps, TransactionDetails } from "../types/TransactionInterfaceType"
+import { GroupedChartData, TransactionDetails } from "../types/TransactionInterfaceType"
 import _ from "lodash"
 
 class ProcessChartDataUtils{
@@ -16,7 +16,7 @@ class ProcessChartDataUtils{
         return groupedData
     }
 
-    getPieChartData(data:ChartProps){
+    getPieChartData(data:GroupedChartData){
         const totalAmount = _.sumBy(_.flatten((Object.values(data))), transaction => Number(transaction.transaction_amount))
         const res = _.map(data, (eachCategory, categoryName) =>{
             return{
