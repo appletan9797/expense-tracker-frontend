@@ -1,10 +1,16 @@
 import Cookies from 'universal-cookie'
 import { Box, Typography } from '@mui/material';
+import { useEffect } from 'react';
 
 export const MyLogout = () =>{
     const cookies = new Cookies()
-    cookies.remove('expense_tracker_login')
-
+    
+    useEffect(() =>{
+        cookies.remove('expense_tracker_login')
+        localStorage.removeItem('userDefaultCurrency')
+        localStorage.removeItem('currencies')
+    },[])
+    
     return(
         <>
             <h2>Expense Tracker</h2>
