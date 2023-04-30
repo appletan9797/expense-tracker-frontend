@@ -4,7 +4,7 @@ export interface Categories{
     [key:string] : number | string
 }
 
-export interface Currencies{
+export interface DataObject{
     [key:string] : number | string
 }
 
@@ -14,9 +14,15 @@ export interface DefaultCurrency{
 
 export interface TransactionFormProps{
     categories : Categories[],
-    currencies : Currencies[],
+    currencies : DataObject[],
     defaultCurrency? : number,
-    existingTransaction? : TransactionDetails[]
+    existingTransaction? : TransactionDetails[],
+    userId : number
+}
+
+export interface AddTransactionFormProps{
+    categories: Categories[],
+    userId: number
 }
 
 export interface EditTransactionFormProps{
@@ -33,8 +39,10 @@ export interface ChartData{
 }
 
 export interface ChartProps{
-    [key:string]: ChartData[]
+    transactionsDetails: ChartData[],
+    userId:number
 }
+
 export interface ChartFigureProps{
     chartData: ChartData[],
 }
@@ -101,13 +109,13 @@ export interface TransactionRecordProps{
 
 export interface TransactionSummaryProps{
     dateTransactionsMap : DateTransactionsMap,
-    currencies:Currencies[],
+    currencies:DataObject[],
     userDefaultCurrency: number
     updateTransactionComponent: Function
 }
 
 export interface TransactionFilterProps{
-    currencies: Currencies[],
+    currencies: DataObject[],
     userDefaultCurrency: number
     updateTransactionSummaryComponent: Function
 }
@@ -115,7 +123,7 @@ export interface TransactionFilterProps{
 export interface TransactionComponentProps{
     loading: boolean,
     transactions:DateTransactionsMap,
-    currencies: Currencies[],
+    currencies: DataObject[],
     userDefaultCurrency: number
 }
 

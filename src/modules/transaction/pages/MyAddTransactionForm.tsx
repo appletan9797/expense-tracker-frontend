@@ -1,5 +1,5 @@
 import { getCategoryApiService } from "../../category/services/GetCategoryApiService";
-import { Categories } from "../../../types/TransactionInterfaceType";
+import { AddTransactionFormProps } from "../../../types/TransactionInterfaceType";
 import { Form as AddTransactionForm } from "../components/Form";
 import { OthersMenuBar as Menubar } from "../../../components/OtherMenubar"
 import { useState, useEffect} from "react";
@@ -16,11 +16,12 @@ export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     return{
         props:{
             'categories' : categories.categories,
+            'userId':currentUser.user_id
         },
     }
 }
 
-export const MyAddTransactionForm = ({ categories }: {categories :Categories[]}) =>{
+export const MyAddTransactionForm = ({ categories, userId }: AddTransactionFormProps) =>{
     const [loading, setLoading] = useState(true)
     const currencies = useCurrencyList()
     const userDefaultCurrency = useDefaultCurrency()
@@ -40,7 +41,7 @@ export const MyAddTransactionForm = ({ categories }: {categories :Categories[]})
             { 
                 loading ? 
                 <div>Loading...</div> : 
-                <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={defaultCurrency} />
+                <AddTransactionForm categories={categories} currencies={currencies} defaultCurrency={defaultCurrency} userId={userId} />
             }
         </>
     )

@@ -17,7 +17,7 @@ import { useState } from 'react';
 import styles from "../../../assets/styles/addExpenseForm.module.css";
 import axios from 'axios';
 
-export const Form = ({ categories, currencies, defaultCurrency, existingTransaction } : TransactionFormProps) =>{
+export const Form = ({ categories, currencies, defaultCurrency, existingTransaction, userId } : TransactionFormProps) =>{
 
     const router = useRouter()
     const [errorMsg, setErrorMsg] = useState("")

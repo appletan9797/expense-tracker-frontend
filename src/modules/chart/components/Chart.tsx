@@ -9,7 +9,7 @@ import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency"
 import { ChartCurrencyFilter } from "./ChartCurrencyFilter"
 import { processChartDataUtils } from "../../../utils/processChartData"
 
-export const Chart = ({transactionsDetails}:ChartProps) =>{
+export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
 
     const defaultCurrency = useDefaultCurrency()
     const [currencyId, setCurrencyId] = useState(0)
@@ -27,7 +27,7 @@ export const Chart = ({transactionsDetails}:ChartProps) =>{
     }
     
     const updateTransactionPeriod = async(month:number, year:number) =>{
-        const response = await getChartDataApiService.getChartData(month, year)
+        const response = await getChartDataApiService.getChartData(userId, month, year)
         setDetailData(response.data)
         setChartData(processChartDataUtils.processChartData(response.data,currencyId,transactionType))
     }
