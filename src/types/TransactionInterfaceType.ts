@@ -16,7 +16,7 @@ export interface TransactionFormProps{
     categories : Categories[],
     currencies : DataObject[],
     defaultCurrency? : number,
-    existingTransaction? : TransactionDetails[],
+    existingTransaction? : TransactionDetails,
     userId? : number
 }
 
@@ -99,7 +99,8 @@ export interface SaveCategoryFormData{
     [key:string] : string
 }
 export interface TransactionDetails {
-    [key:string] : number | string,
+    //transaction_date : string,
+    [key:string] : number | string
 }
 
 export interface DateTransactionsMap {

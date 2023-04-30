@@ -31,7 +31,7 @@ export const Form = ({ categories, currencies, defaultCurrency, existingTransact
             details: existingTransaction? existingTransaction["transaction_details" as keyof typeof existingTransaction] : '',
             amount: existingTransaction? existingTransaction["transaction_amount" as keyof typeof existingTransaction] : 0,
             paymentMethod: existingTransaction? existingTransaction["payment_method" as keyof typeof existingTransaction] : 0,
-            date: existingTransaction? new Date(existingTransaction["transaction_date"] as string) : new Date()
+            date: existingTransaction? new Date(existingTransaction["transaction_date" as keyof typeof existingTransaction]) : new Date()
         }
     })
 
