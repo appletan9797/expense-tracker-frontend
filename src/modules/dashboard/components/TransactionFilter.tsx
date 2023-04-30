@@ -5,9 +5,9 @@ import { TransactionFilterProps } from "../../../types/TransactionInterfaceType"
 import styles from "../../../assets/styles/transactionSummary.module.css"
 
 export const TransactionFilter = ({currencies, userDefaultCurrency, updateTransactionSummaryComponent} : TransactionFilterProps) =>{
-    const [menuVisibility, setMenuVisibility] = useState(null)
+    const [menuVisibility, setMenuVisibility] = useState<null | SVGElement>(null)
     const isMenuOpen = Boolean(menuVisibility);
-    const handleClick = (event : React.MouseEvent) => {
+    const handleClick = (event : React.MouseEvent<SVGElement>) => {
         setMenuVisibility(event.currentTarget)
     }
     
@@ -44,7 +44,6 @@ export const TransactionFilter = ({currencies, userDefaultCurrency, updateTransa
                 onClose={handleClose}
                 PaperProps={{
                 style: {
-                    //maxHeight: ITEM_HEIGHT * 4.5,
                     width: '20ch',
                 },
                 }}
