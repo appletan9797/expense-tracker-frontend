@@ -19,7 +19,7 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
     
     const updateTransactionType = (type:string) =>{
         setTransactionType(type)
-        setChartData(processChartDataUtils.processChartData(transactionsDetails,currencyId,type))
+        setChartData(processChartDataUtils.processChartData(detailData,currencyId,type))
     }
 
     const updateTransactionCurrency = (currency:number) =>{
@@ -38,7 +38,7 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
 
     useEffect(() =>{
         if(currencyId !== 0){
-            setChartData(processChartDataUtils.processChartData(transactionsDetails,currencyId,transactionType))
+            setChartData(processChartDataUtils.processChartData(detailData,currencyId,transactionType))
         }
     },[currencyId])
 
