@@ -19,6 +19,7 @@ export const ChartPeriodFilter = ({updateChartComponent}:ChartFilterProps) =>{
                 onAccept={handleChange} 
                 views={['year', 'month']}
                 minDate={new Date('2010-01-01')}
+                defaultValue={new Date()}
                 format="MM/yyyy"
                 sx={{width: {xs:'100%', md:'18%'}, marginLeft:'10px'}}/>
         </LocalizationProvider>
