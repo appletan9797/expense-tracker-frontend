@@ -1,12 +1,12 @@
-import { ChartTypeFilter } from "./ChartTypeFilter"
-import { ChartFigure } from "./ChartFigure"
-import { ChartDetails } from "./ChartDetails"
-import { ChartPeriodFilter } from "./ChartPeriodFilter"
+import { TransactionTypeFilter } from "./TransactionTypeFilter"
+import { PieChart as TransactionChartFigure } from "./PieChart"
+import { TransactionDetails as TransactionChartDetails } from "./TransactionDetails"
+import { TransactionPeriodFilter } from "./TransactionPeriodFilter"
 import { ChartProps, ChartData } from "../../../types/TransactionInterfaceType"
 import { useState, useEffect } from "react"
 import { getChartDataApiService } from "../services/GetChartDataApiService"
 import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency"
-import { ChartCurrencyFilter } from "./ChartCurrencyFilter"
+import { TransactionCurrencyFilter } from "./TransactionCurrencyFilter"
 import { processChartDataUtils } from "../../../utils/processChartData"
 
 export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
@@ -44,13 +44,13 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
 
     return(
         <>
-            <ChartTypeFilter updateChartComponent={updateTransactionType}/>
-            <ChartCurrencyFilter updateChartComponent={updateTransactionCurrency} />
-            <ChartPeriodFilter updateChartComponent={updateTransactionPeriod}/>
+            <TransactionTypeFilter onFilterChange={updateTransactionType}/>
+            <TransactionCurrencyFilter onFilterChange={updateTransactionCurrency} />
+            <TransactionPeriodFilter onFilterChange={updateTransactionPeriod}/>
             {chartData ?
                 <>
-                    <ChartFigure chartData={chartData}/>
-                    <ChartDetails detailsData={detailData} transactionType={transactionType} currencyId={currencyId}/> 
+                    <TransactionChartFigure data={chartData}/>
+                    <TransactionChartDetails data={detailData} transactionType={transactionType} currencyId={currencyId}/> 
                 </> :
                 <div>Loading</div>
             }

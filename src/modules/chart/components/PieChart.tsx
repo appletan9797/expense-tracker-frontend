@@ -3,7 +3,7 @@ import { AgChartsReact } from 'ag-charts-react';
 import { AgChartOptions } from 'ag-charts-community';
 import { ChartData, ChartFigureProps } from '../../../types/TransactionInterfaceType';
 
-export const ChartFigure = ({chartData} : ChartFigureProps) =>{
+export const PieChart = ({data} : ChartFigureProps) =>{
     const [transactionChart, setTransactionChart] = useState({})
     const [loading, setLoading] = useState(true)
     const [option, setOption] = useState<AgChartOptions>({})
@@ -39,9 +39,9 @@ export const ChartFigure = ({chartData} : ChartFigureProps) =>{
         setLoading(false)
     }
     useEffect(() =>{
-        setDataForChart(chartData)
-        setTransactionChart(chartData)
-    },[chartData])
+        setDataForChart(data)
+        setTransactionChart(data)
+    },[data])
 
     return(
         loading ? <div>Loading...</div> : <AgChartsReact options={option} key={JSON.stringify(transactionChart)} />

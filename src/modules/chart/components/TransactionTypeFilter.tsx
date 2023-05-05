@@ -2,12 +2,12 @@ import { ChartFilterProps } from '../../../types/TransactionInterfaceType'
 import { Select, MenuItem, SelectChangeEvent} from '@mui/material'
 import { useState } from 'react'
 
-export const ChartTypeFilter = ({updateChartComponent} : ChartFilterProps) =>{
+export const TransactionTypeFilter = ({onFilterChange} : ChartFilterProps) =>{
 
     const [type, setType] = useState("Expense")
     const handleChange = (event : SelectChangeEvent) =>{
         setType(event.target.value)
-        updateChartComponent(event.target.value)
+        onFilterChange(event.target.value) 
     }
     return(
         <Select
@@ -15,7 +15,7 @@ export const ChartTypeFilter = ({updateChartComponent} : ChartFilterProps) =>{
             value={type}
             onChange={handleChange}
             sx={{ 
-                width: '15%'
+                width: {md:"15%",xs:"100%"}
             }}
         >
             <MenuItem value={"Expense"} >Expense</MenuItem>

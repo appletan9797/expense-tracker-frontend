@@ -4,7 +4,7 @@ import { useCurrencyList } from '../../currency/hooks/useCurrencyList'
 import { useDefaultCurrency } from '../../user/hooks/useDefaultCurrency'
 import { useEffect, useState } from 'react'
 
-export const ChartCurrencyFilter = ({updateChartComponent} : ChartFilterProps) =>{
+export const TransactionCurrencyFilter = ({onFilterChange} : ChartFilterProps) =>{
 
     const currencyList = useCurrencyList()
     const defaultCurrency = useDefaultCurrency()
@@ -13,7 +13,7 @@ export const ChartCurrencyFilter = ({updateChartComponent} : ChartFilterProps) =
 
     const handleChange = (event : SelectChangeEvent) =>{
         setCurrency(Number(event.target.value))
-        updateChartComponent(event.target.value)
+        onFilterChange(event.target.value)
     }
 
     useEffect(() =>{
@@ -30,8 +30,9 @@ export const ChartCurrencyFilter = ({updateChartComponent} : ChartFilterProps) =
             value={currency}
             onChange={handleChange}
             sx={{ 
-                width: '18%',
-                marginLeft:'15px'
+                width: {md:"15%",xs:"100%"},
+                marginLeft:{md:"15px"},
+                marginTop:{xs:"15px"}
             }}
         >
             {

@@ -53,7 +53,7 @@ export interface ChartProps{
 }
 
 export interface ChartFigureProps{
-    chartData: ChartData[],
+    [key:string]: ChartData[],
 }
 
 export interface ChartDetailsProps{
@@ -142,7 +142,7 @@ export interface GroupedTransactions{
 }
 
 export interface ChartFilterProps{
-    updateChartComponent : Function
+    [x:string] : Function
 }
 
 export interface SettingsMenuProps{
