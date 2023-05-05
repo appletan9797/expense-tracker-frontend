@@ -57,9 +57,7 @@ export interface ChartFigureProps{
 }
 
 export interface ChartDetailsProps{
-    detailsData: ChartData[],
-    transactionType: string,
-    currencyId : number
+    data: GroupedChartData
 }
 
 export interface FormData {

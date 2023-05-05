@@ -2,7 +2,7 @@ import { TransactionTypeFilter } from "./TransactionTypeFilter"
 import { PieChart as TransactionChartFigure } from "./PieChart"
 import { TransactionDetails as TransactionChartDetails } from "./TransactionDetails"
 import { TransactionPeriodFilter } from "./TransactionPeriodFilter"
-import { ChartProps, ChartData } from "../../../types/TransactionInterfaceType"
+import { ChartProps, ChartData, GroupedChartData } from "../../../types/TransactionInterfaceType"
 import { useState, useEffect } from "react"
 import { getChartDataApiService } from "../services/GetChartDataApiService"
 import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency"
@@ -14,12 +14,13 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
     const defaultCurrency = useDefaultCurrency()
     const [currencyId, setCurrencyId] = useState(0)
     const [transactionType, setTransactionType] = useState("Expense")
-    const [chartData, setChartData] = useState<ChartData[]>()
+    const [groupedData, setGroupedData] = useState<GroupedChartData>({})
+    const [chartData, setChartData] = useState<ChartData[]>([])
     const [detailData, setDetailData] = useState(transactionsDetails)
     
     const updateTransactionType = (type:string) =>{
         setTransactionType(type)
-        setChartData(processChartDataUtils.processChartData(detailData,currencyId,type))
+        setGroupedData(processChartDataUtils.getGroupedData(detailData,currencyId,type))
     }
 
     const updateTransactionCurrency = (currency:number) =>{
@@ -29,7 +30,7 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
     const updateTransactionPeriod = async(month:number, year:number) =>{
         const response = await getChartDataApiService.getChartData(userId, month, year)
         setDetailData(response.data)
-        setChartData(processChartDataUtils.processChartData(response.data,currencyId,transactionType))
+        setGroupedData(processChartDataUtils.getGroupedData(response.data,currencyId,transactionType))
     }
 
     useEffect(() =>{
@@ -38,9 +39,13 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
 
     useEffect(() =>{
         if(currencyId !== 0){
-            setChartData(processChartDataUtils.processChartData(detailData,currencyId,transactionType))
+            setGroupedData(processChartDataUtils.getGroupedData(detailData,currencyId,transactionType))
         }
     },[currencyId])
+
+    useEffect(() =>{
+        setChartData(processChartDataUtils.getPieChartData(groupedData))
+    },[groupedData])
 
     return(
         <>
@@ -50,7 +55,7 @@ export const Chart = ({transactionsDetails, userId}:ChartProps) =>{
             {chartData ?
                 <>
                     <TransactionChartFigure data={chartData}/>
-                    <TransactionChartDetails data={detailData} transactionType={transactionType} currencyId={currencyId}/> 
+                    <TransactionChartDetails data={groupedData}/> 
                 </> :
                 <div>Loading</div>
             }

@@ -2,11 +2,6 @@ import { GroupedChartData, TransactionDetails } from "../types/TransactionInterf
 import _ from "lodash"
 
 class ProcessChartDataUtils{
-
-    processChartData(transactionDetails:TransactionDetails[], currencyId: number, transactionType:string){
-        const groupedData = this.getGroupedData(transactionDetails, currencyId,transactionType)
-        return this.getPieChartData(groupedData)
-    }
     
     getGroupedData(transactionDetails:TransactionDetails[], currencyId: number, transactionType:string){
         const filteredTransaction = _.filter(transactionDetails, (eachTransaction) => 

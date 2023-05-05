@@ -3,15 +3,14 @@ import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow} fro
 import { processChartDataUtils } from "../../../utils/processChartData"
 import _ from "lodash"
 
-export const ChartDetails = ({ detailsData, transactionType, currencyId }: ChartDetailsProps) =>{
+export const ChartDetails = ({ data }: ChartDetailsProps) =>{
 
     const returnTableBody = () =>{
-        const groupedData = processChartDataUtils.getGroupedData(detailsData, currencyId, transactionType)
 
         return(
-            _.map(groupedData, (eachCategory, categoryName) =>{
+            _.map(data, (eachCategory, categoryName) =>{
                 //To get the data from chart data, which label name equals to current category name (to get the percentage)
-                const currentCategory = _.find(processChartDataUtils.getPieChartData(groupedData), (eachCategory) => { return eachCategory.label === categoryName})
+                const currentCategory = _.find(processChartDataUtils.getPieChartData(data), (eachCategory) => { return eachCategory.label === categoryName})
                 return(
                     <>
                         <TableRow>
