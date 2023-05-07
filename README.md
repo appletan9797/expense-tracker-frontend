@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# Expense Tracker Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The purpose of this project is to record expense / income.
 
-## Available Scripts
+The project is currently accessible on localhost only, upcoming plan is to deploy it live.
 
-In the project directory, you can run:
+Here are some of the screenshots of the project UI
 
-### `npm start`
+### Dashboard
+User can view the transaction record of current month from here. There will be a filter for filtering data based on currency
+![Dashboard (Mainpage)](https://user-images.githubusercontent.com/65848993/235485804-31a36d49-1f98-4a6a-af78-8a09859e673e.png)
+![Dashboard - Currency Filter](https://user-images.githubusercontent.com/65848993/235485817-59d3933e-32b9-4ca8-b4c7-7f286878b3e3.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Chart
+User can check the record in the form of chart. 
+There will be 3 filters, which purpose is to filter the chart by:
+  - Transaction type (Expense / Income)
+  - Currency
+  - Transaction period (to select month and year)
+ 
+![Chart (Spending analysis)](https://user-images.githubusercontent.com/65848993/235486755-7ebfbc37-ea46-44d4-bdae-a1c3683d96ef.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Settings
+User can update following items on this page:
+  - Categories (which is needed when adding transaction)
+  - Default currency
+  - Password
+  
+![Settings - Manage Categories](https://user-images.githubusercontent.com/65848993/235487485-1a8b5818-c158-4ab2-a477-dcf9d7afaaaf.png)
+![Settings - Manage default currency](https://user-images.githubusercontent.com/65848993/235487405-1706fc0a-d73a-4488-9018-bd0b3e88ada7.png)
+![Settings - Update password](https://user-images.githubusercontent.com/65848993/235487407-6838453e-a0cc-4872-9f3a-f08298cf9de0.png)
