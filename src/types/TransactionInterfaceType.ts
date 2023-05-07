@@ -60,6 +60,12 @@ export interface ChartDetailsProps{
     data: GroupedChartData
 }
 
+export interface DetailsBodyProps{
+    categoryName : string 
+    currentCategoryChartData: ChartData
+    currentCategoryTransactions: TransactionDetails[]
+}
+
 export interface FormData {
     "amount" : number,
     "category" : number,
