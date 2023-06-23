@@ -3,3 +3,8 @@
     cursor: pointer;
     margin-top: 50px;
 }
+
+.monthFilter{
+    margin-left: 20px;
+    cursor: pointer;
+}

@@ -29,7 +29,7 @@ export const LoginForm = () =>{
             const user = await loginApiService.login(username,password)
             saveDataUponLogin.setLoginCookies(user)
             saveDataUponLogin.setLocalStorage(user)
-            router.push('../transactions')
+            router.push('../')
         }
         catch(error:any){
             if(error.response && error.response.status === 401){

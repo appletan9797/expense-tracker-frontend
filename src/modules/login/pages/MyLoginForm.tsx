@@ -7,7 +7,7 @@ export const getServerSideProps = (context:GetServerSidePropsContext) =>{
         return {
             redirect: {
               permanent: false,
-              destination: "../transactions",
+              destination: "../",
             },
           };
     }

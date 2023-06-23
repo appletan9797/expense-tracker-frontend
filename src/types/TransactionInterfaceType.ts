@@ -113,6 +113,7 @@ export interface DateTransactionsMap {
 
 export interface TransactionsDashboardProps{
     transactions:DateTransactionsMap
+    userId: number
 }
 
 export interface TransactionRecordProps{
@@ -126,6 +127,7 @@ export interface TransactionSummaryProps{
     currencies:DataObject[],
     userDefaultCurrency: number
     updateTransactionComponent: Function
+    updateTransactions: Function
 }
 
 export interface TransactionFilterProps{
@@ -138,7 +140,12 @@ export interface TransactionComponentProps{
     loading: boolean,
     transactions:DateTransactionsMap,
     currencies: DataObject[],
-    userDefaultCurrency: number
+    userDefaultCurrency: number,
+    userId:number
+}
+
+export interface MonthFilterProps{
+    updateTransactions : Function
 }
 
 export interface GroupedTransactions{
