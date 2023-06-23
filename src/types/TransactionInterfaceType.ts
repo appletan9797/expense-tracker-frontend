@@ -113,6 +113,7 @@ export interface DateTransactionsMap {
 
 export interface TransactionsDashboardProps{
     transactions:DateTransactionsMap
+    userId: number
 }
 
 export interface TransactionRecordProps{

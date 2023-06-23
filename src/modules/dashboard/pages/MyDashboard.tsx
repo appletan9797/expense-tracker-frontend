@@ -10,16 +10,27 @@ import { useDefaultCurrency } from "../../user/hooks/useDefaultCurrency"
 
 export const getServerSideProps = async(context:GetServerSidePropsContext) =>{
     const token = context.req.cookies['expense_tracker_login']
-    const currentUser = await getCurrentUserApiService.getCurrentUser(token)
-    const transactions = await getAllExpenseApiService.getAllExpense(currentUser.user_id)
-    return{
-        props:{
-            transactions : transactions
+    if(token){
+        const currentUser = await getCurrentUserApiService.getCurrentUser(token)
+        const transactions = await getAllExpenseApiService.getAllExpense(currentUser.user_id)
+        return{
+            props:{
+                transactions : transactions,
+                userId : currentUser.user_id
+            }
+        }
+    }
+    else{
+        return {
+            redirect: {
+              permanent: false,
+              destination: "../login",
+            },
         }
     }
 }
 
-export const MyDashboard = ({transactions} : TransactionsDashboardProps) =>{
+export const MyDashboard = ({transactions, userId} : TransactionsDashboardProps) =>{
     
     const [loading, setLoading] = useState(true)
     const currencies = useCurrencyList()
@@ -33,13 +44,14 @@ export const MyDashboard = ({transactions} : TransactionsDashboardProps) =>{
     
     return (
         <>
-                <MainMenuBar />
-                <Transactions 
-                    loading={loading} 
-                    transactions={transactions} 
-                    currencies={currencies} 
-                    userDefaultCurrency={userDefaultCurrency}
-                />
+            <MainMenuBar />
+            <Transactions 
+                loading={loading} 
+                transactions={transactions} 
+                currencies={currencies} 
+                userDefaultCurrency={userDefaultCurrency}
+                userId={userId}
+            />
         </>
       )
 }
