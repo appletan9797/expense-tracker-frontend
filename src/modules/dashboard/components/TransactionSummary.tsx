@@ -1,10 +1,11 @@
 import { TransactionDetails, TransactionSummaryProps, GroupedTransactions} from "../../../types/TransactionInterfaceType"
 import { Grid, Table, TableBody, TableRow,TableCell, TableContainer, TableHead } from "@mui/material"
 import { TransactionFilter } from "./TransactionFilter"
+import { MonthFilter } from "./MonthFilter"
 import { useState } from "react"
 import _ from "lodash"
 
-export const TransactionSummary = ({dateTransactionsMap, currencies, userDefaultCurrency, updateTransactionComponent} : TransactionSummaryProps) =>{
+export const TransactionSummary = ({dateTransactionsMap, currencies, userDefaultCurrency, updateTransactionComponent, updateTransactions} : TransactionSummaryProps) =>{
     const [defaultCurrency, setDefaultCurrency] = useState(userDefaultCurrency)
     const groupedData: GroupedTransactions = _.groupBy(_.flatten(_.values(dateTransactionsMap)),"transaction_type")
 
@@ -63,7 +64,11 @@ export const TransactionSummary = ({dateTransactionsMap, currencies, userDefault
                     userDefaultCurrency={userDefaultCurrency} 
                     updateTransactionSummaryComponent={updateCurrency}
                 />
+                <MonthFilter
+                    updateTransactions={updateTransactions}
+                />
             </Grid>
+            
         </Grid>
     )
 }
